@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"module": "NodeNext",
+		"target": "ES2023",
+		"lib": [
+			"esnext"
+		],
+		"sourceMap": true,
+		"rootDir": ".",
+		"outDir": "dist",
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"resolveJsonModule": true
+	},
+	"include": [
+		"src/**/*",
+		"chathy"
+	],
+	"exclude": [
+		"**/*.test.ts",
+		"**/node_modules/**",
+	],
+}

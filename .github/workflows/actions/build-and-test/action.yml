@@ -1,0 +1,39 @@
+name: 'Build and Test'
+description: 'Checks out code, sets up Node.js, installs dependencies, compiles, and runs tests'
+inputs:
+  node-version:
+    description: 'Node version to use'
+    required: true
+    default: '20'
+  install-command:
+    description: 'Command to install dependencies'
+    required: false
+    default: 'npm install'
+  compile-command:
+    description: 'Command to compile the code'
+    required: false
+    default: 'npm run compile'
+  test-command:
+    description: 'Command to run tests'
+    required: false
+    default: 'npm run test'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Install dependencies
+      run: ${{ inputs.install-command }}
+      shell: bash
+
+    - name: Compile
+      run: ${{ inputs.compile-command }}
+      shell: bash
+
+    - name: Run tests
+      run: ${{ inputs.test-command }}
+      shell: bash

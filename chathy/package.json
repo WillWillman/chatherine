@@ -1,0 +1,56 @@
+{
+  "name": "@chatherine/chathy",
+  "version": "0.0.0",
+  "author": "willman.codes",
+  "license": "MIT",
+  "description": "Lightweight wrapper for vscode chat participant extension creation",
+  "engines": {
+    "node": "^20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/willman-codes/chatherine.git"
+  },
+  "categories": [
+    "AI",
+    "Chat",
+    "Debuggers",
+    "Education",
+    "Programming Languages"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "chathy": "cli.js"
+  },
+  "files": [
+    "dist/",
+    "cli.js",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "compile": "rm -rf ./dist && tsc -p ./",
+    "publish": "npm publish",
+    "lint": "eslint --fix"
+  },
+  "bugs": {
+    "url": "https://github.com/willman-codes/chatherine/issues"
+  },
+  "homepage": "https://github.com/willman-codes/chatherine#readme",
+  "dependencies": {
+    "@types/vscode": "^1.99.0",
+    "@vscode/vsce": "^3.3.2",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.17.30",
+    "eslint": "^9.13.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "ts-jest": "^29.1.1",
+    "typescript-eslint": "^8.26.0"
+  }
+}

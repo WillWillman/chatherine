@@ -1,0 +1,1 @@
+export { clearEditor } from './clearEditor';

@@ -1,0 +1,12 @@
+{
+    "cSpell.words": [
+        "chatherine",
+        "chathy",
+        "filetree"
+    ],
+    "cSpell.ignorePaths": [
+        "dist/**",
+        "dist-bundle/**",
+        "extension-bundle.js"
+    ]
+}

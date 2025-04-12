@@ -1,0 +1,11 @@
+name: Main
+on: push
+jobs:
+  BuildAndTest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build and Test
+        uses: ./.github/workflows/actions/build-and-test

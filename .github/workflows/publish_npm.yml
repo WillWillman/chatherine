@@ -1,0 +1,28 @@
+name: Publish NPM
+on:
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'The branch, tag or SHA to checkout for publishing'
+        required: true
+      package:
+        description: 'The package to publish'
+        required: true
+        default: 'chathy'
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Publish ${{ inputs.package }} @ ${{ inputs.ref }}
+        uses: ./actions/publish
+        with:
+          node-version: 20
+          package: ${{ inputs.package }}

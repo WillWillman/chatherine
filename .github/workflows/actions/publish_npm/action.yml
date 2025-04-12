@@ -1,0 +1,47 @@
+name: 'Build and Test'
+description: 'Checks out code, sets up Node.js, installs dependencies, compiles, and runs tests'
+inputs:
+  node-version:
+    description: 'Node version to use'
+    required: true
+    default: '20'
+  install-command:
+    description: 'Command to install dependencies'
+    required: false
+    default: 'npm install'
+  compile-command:
+    description: 'Command to compile the code'
+    required: false
+    default: 'npm run compile'
+  test-command:
+    description: 'Command to run tests'
+    required: false
+    default: 'npm run test'
+  package:
+    description: 'The package to publish'
+    required: true
+    default: 'chathy'
+  publish-command:
+    description: 'Command to publish the package'
+    required: false
+    default: 'npm publish'
+  NPM_TOKEN:
+    description: 'NPM token for authentication'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Build and Test
+        uses: ./.github/workflows/actions/build-and-test
+      with:
+        node-version: ${{ inputs.node-version }}
+        install-command: ${{ inputs.install-command }}
+        compile-command: ${{ inputs.compile-command }}
+        test-command: ${{ inputs.test-command }}
+
+    - name: Publish to npm
+      working-directory: src/packages/${{ inputs.package }}
+      run: ${{ inputs.publish-command }}
+      env:
+        NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}

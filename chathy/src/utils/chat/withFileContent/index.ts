@@ -1,0 +1,1 @@
+export { withFileContent } from './withFileContent';
