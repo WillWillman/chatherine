@@ -58,6 +58,28 @@
 		"typescript-eslint": "^8.26.0"
 	},
 	"contributes": {
+		"configuration": {
+			"title": "Chatherine",
+			"properties": {
+				"chatherine.ignoreDirectories": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						"node_modules",
+						"dist",
+						"build",
+						"out",
+						"coverage",
+						"lib",
+						"bin",
+						".vscode-test"
+					],
+					"description": "Directories to ignore when digging into project documentation"
+				}
+			}
+		},
 		"chatParticipants": [
 			{
 				"id": "chatherine",
@@ -100,6 +122,10 @@
 					{
 						"name": "refinePromptNoHistory",
 						"description": "Refine the given prompt without chat history"
+					},
+					{
+						"name": "documentation",
+						"description": "Dive into the chatherine and chathy documentation"
 					}
 				]
 			}

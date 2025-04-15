@@ -1,0 +1,1 @@
+export { getFileReferences } from './getFileReferences';

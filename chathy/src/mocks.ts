@@ -207,4 +207,5 @@ export const openTextDocumentResult = {
 export const commandContext = {
   extensionContext,
   workspaceConfiguration,
+  workspaceRoot: '/path/to/mock',
 };
