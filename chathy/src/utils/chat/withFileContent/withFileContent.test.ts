@@ -3,10 +3,12 @@ import { withFileContent } from './withFileContent';
 import * as mocks from '../../../mocks';
 
 describe('withFileContent', () => {
+  const [_, __, stream] = mocks.handlerArgs;
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.spyOn(vscode.workspace, 'openTextDocument').mockResolvedValue(mocks.openTextDocumentResult);
     jest.spyOn(console, 'error').mockImplementation(() => { });
+    jest.spyOn(mocks.openTextDocumentResult, 'getText');
   });
 
   it('should add file content to reference when URI is provided as Location', async () => {
@@ -21,7 +23,7 @@ describe('withFileContent', () => {
       },
     };
 
-    const result = await withFileContent(reference);
+    const result = await withFileContent(stream)(reference);
 
     expect(vscode.workspace.openTextDocument).toHaveBeenCalledWith(reference.value.uri);
     expect(mocks.openTextDocumentResult.getText).toHaveBeenCalledWith(reference.value.range);
@@ -35,7 +37,7 @@ describe('withFileContent', () => {
       range: [2, 5] as [number, number],
     };
 
-    const result = await withFileContent(reference);
+    const result = await withFileContent(stream)(reference);
 
     expect(vscode.workspace.openTextDocument).toHaveBeenCalledWith(vscode.Uri.parse(reference.value));
     expect(mocks.openTextDocumentResult.getText).toHaveBeenCalledWith(
@@ -53,9 +55,9 @@ describe('withFileContent', () => {
       value: vscode.Uri.parse('file:///path/to/test.txt'),
     };
 
-    const result = await withFileContent(reference);
+    const result = await withFileContent(stream)(reference);
 
-    // Verify
+    jest.spyOn(mocks.openTextDocumentResult, 'getText');
     expect(vscode.workspace.openTextDocument).toHaveBeenCalledWith(reference.value);
     expect(mocks.openTextDocumentResult.getText).toHaveBeenCalledWith(
       new vscode.Range(
@@ -74,7 +76,7 @@ describe('withFileContent', () => {
     const error = new Error('Test error');
     jest.spyOn(vscode.workspace, 'openTextDocument').mockRejectedValue(error);
 
-    const result = await withFileContent(reference);
+    const result = await withFileContent(stream)(reference);
 
     expect(vscode.workspace.openTextDocument).toHaveBeenCalledWith(reference.value);
     expect(console.error).toHaveBeenCalledWith('Chatherine: Error getting file content:', error);

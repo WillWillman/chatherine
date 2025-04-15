@@ -13,7 +13,7 @@ describe('chatStream', () => {
     jest.restoreAllMocks();
     jest.spyOn(utils, 'sendRequest').mockImplementation(mockSendRequest);
     jest.spyOn(utils, 'streamResponse').mockImplementation(mockStreamResponse);
-    jest.spyOn(utils, 'withFileContent').mockImplementation(mockWithFileContent);
+    jest.spyOn(utils, 'withFileContent').mockReturnValue(mockWithFileContent);
   });
 
 
@@ -23,11 +23,11 @@ describe('chatStream', () => {
     await chatStream(instructions)(request, context, stream, token);
 
     request.references.forEach((ref, index) => {
-      expect(utils.withFileContent).toHaveReturnedWith({ ...ref, fileContent: 'test content' });
-      expect(utils.withFileContent).toHaveBeenCalledTimes(index + 1);
+      expect(mockWithFileContent).toHaveReturnedWith({ ...ref, fileContent: 'test content' });
+      expect(mockWithFileContent).toHaveBeenCalledTimes(index + 1);
     });
-    expect(utils.withFileContent).toHaveBeenCalled();
-    expect(utils.withFileContent).toHaveBeenCalledTimes(request.references.length);
+    expect(mockWithFileContent).toHaveBeenCalled();
+    expect(mockWithFileContent).toHaveBeenCalledTimes(request.references.length);
     expect(utils.sendRequest).toHaveBeenCalledWith(request.model, token);
     expect(utils.sendRequest(request.model, token)).toHaveBeenCalledWith([
       ...instructions,
