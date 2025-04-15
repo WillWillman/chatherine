@@ -12,9 +12,14 @@ export type LanguageModelChatResponse = vscode.LanguageModelChatResponse;
 export type LanguageModelChatRequestOptions = vscode.LanguageModelChatRequestOptions;
 export type LanguageModelChat = vscode.LanguageModelChat;
 
+export type CommandContext = {
+  extensionContext: ExtensionContext;
+  workspaceConfiguration: vscode.WorkspaceConfiguration;
+  workspaceRoot: string;
+}
 
-export type Command = (extensionContext: ExtensionContext) => ChatRequestHandler;
+export type Command = (commandContext: CommandContext) => ChatRequestHandler;
 
 export type Activate = (commands: Record<string, Command>, defaultCommand?: string) => (extensionContext: ExtensionContext) => void;
 export type CreateChatParticipant = (ExtensionContext: ExtensionContext, defaultCommand: string) => ChatParticipant;
-export type RegisterCommand = (extensionContext: vscode.ExtensionContext) => (command: Command) => vscode.Disposable;
+export type RegisterCommand = (commandContext: CommandContext) => (command: Command) => vscode.Disposable;

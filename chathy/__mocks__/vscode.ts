@@ -4,16 +4,6 @@ export const window = {
     showErrorMessage: jest.fn(),
 };
 
-export const workspace = {
-    getConfiguration: jest.fn().mockReturnValue({
-        get: jest.fn(),
-    }),
-    openTextDocument: jest.fn().mockResolvedValue({
-        getText: jest.fn(),
-        lineCount: 10,
-    })
-};
-
 export const commands = {
     registerCommand: jest.fn(),
     executeCommand: jest.fn(),
@@ -37,6 +27,25 @@ export const Uri = {
     with: jest.fn().mockReturnThis(),
     toString: jest.fn().mockReturnValue('file:///path/to/mock'),
     toJSON: jest.fn().mockReturnValue({ $mid: 1, scheme: 'file', path: '/path/to/mock' }),
+};
+
+
+export const workspace = {
+    getConfiguration: jest.fn().mockReturnValue({
+        get: jest.fn(),
+        has: jest.fn().mockReturnValue(true),
+        update: jest.fn().mockResolvedValue(undefined),
+        inspect: jest.fn().mockResolvedValue({
+            key: 'mockKey',
+        }),
+    }),
+    openTextDocument: jest.fn().mockResolvedValue({
+        getText: jest.fn(),
+        lineCount: 10,
+    }),
+    workspaceFolders: [{
+        uri: Uri
+    }],
 };
 
 // Static methods for vscode.Uri

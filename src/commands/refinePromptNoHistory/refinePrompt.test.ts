@@ -10,11 +10,11 @@ describe('refinePromptNoHistory command', () => {
   });
 
   it('calls chatStream with empty history', async () => {
-    await refinePromptNoHistory(chathy.mocks.extensionContext)(...chathy.mocks.handlerArgs);
+    await refinePromptNoHistory(chathy.mocks.commandContext)(...chathy.mocks.handlerArgs);
 
-    expect(refinePrompt).toHaveBeenCalledWith(chathy.mocks.extensionContext);
+    expect(refinePrompt).toHaveBeenCalledWith(chathy.mocks.commandContext);
 
     jest.replaceProperty(chathy.mocks.chatContext, 'history', []);
-    expect(refinePrompt(chathy.mocks.extensionContext)).toHaveBeenCalledWith(...chathy.mocks.handlerArgs);
+    expect(refinePrompt(chathy.mocks.commandContext)).toHaveBeenCalledWith(...chathy.mocks.handlerArgs);
   });
 });

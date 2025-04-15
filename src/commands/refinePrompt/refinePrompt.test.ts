@@ -9,7 +9,7 @@ describe('refinePrompt command', () => {
   });
 
   it('calls chatStream with empty history', async () => {
-    await refinePrompt(chathy.mocks.extensionContext)(...chathy.mocks.handlerArgs);
+    await refinePrompt(chathy.mocks.commandContext)(...chathy.mocks.handlerArgs);
 
     expect(chathy.utils.chat.chatStream).toHaveBeenCalledWith(instructions);
 

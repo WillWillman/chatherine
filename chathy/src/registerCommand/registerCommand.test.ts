@@ -12,11 +12,11 @@ describe('registerCommand', () => {
   });
 
   it('should register a command with vscode and push to subscriptions', () => {
-    const result = registerCommand(mocks.extensionContext)(mockCommand);
+    const result = registerCommand(mocks.commandContext)(mockCommand);
 
     expect(vscode.commands.registerCommand).toHaveBeenCalledWith(mockCommand.name, expect.any(Function));
     expect(mocks.extensionContext.subscriptions).toContain(mockDisposable);
-    expect(mockCommand).toHaveBeenCalledWith(mocks.extensionContext);
+    expect(mockCommand).toHaveBeenCalledWith(mocks.commandContext);
     expect(result).toBe(mockDisposable);
   });
 

@@ -1,6 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as vscode from 'vscode';
 
+export const workspaceConfiguration: vscode.WorkspaceConfiguration = {
+  get: () => '',
+  has: () => true,
+  update: () => Promise.resolve(undefined),
+  inspect: () => ({
+    key: 'mockKey',
+  }),
+}
 const createUriMock = (path: string): vscode.Uri => ({
   scheme: 'file',
   authority: '',
@@ -195,3 +203,8 @@ export const openTextDocumentResult = {
   validatePosition: (position: vscode.Position) => position,
   getWordRangeAtPosition: (position: vscode.Position) => new vscode.Range(position, new vscode.Position(position.line, position.character + 5)),
 } as vscode.TextDocument;
+
+export const commandContext = {
+  extensionContext,
+  workspaceConfiguration,
+};
