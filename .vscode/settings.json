@@ -8,5 +8,15 @@
         "dist/**",
         "dist-bundle/**",
         "extension-bundle.js"
-    ]
+    ],
+    "chatherine.ignoreDirectories": [
+        "node_modules",
+        "dist",
+        "build",
+        "out",
+        "coverage",
+        "lib",
+        "bin",
+        ".vscode-test"
+    ],
 }
