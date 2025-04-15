@@ -1,5 +1,6 @@
 import * as participant from '..';
 import * as mocks from '../mocks';
+import * as vscode from 'vscode';
 import { activate } from './activate';
 
 describe('activate', () => {
@@ -18,7 +19,7 @@ describe('activate', () => {
       onDidReceiveFeedback: jest.fn(),
       dispose: jest.fn(),
       requestHandler: mockCommandHandler
-  });
+    });
   });
 
   it('should register the expected commands', () => {
@@ -26,7 +27,11 @@ describe('activate', () => {
     const activateWithCommands = activate(commands, commands.commandDefault.name);
     activateWithCommands(mocks.extensionContext);
 
-    expect(participant.registerCommand).toHaveBeenCalledWith(mocks.extensionContext);
+    expect(participant.registerCommand).toHaveBeenCalledWith({
+      extensionContext: mocks.extensionContext,
+      workspaceConfiguration: vscode.workspace.getConfiguration(''),
+      workspaceRoot: '/path/to/mock',
+    });
     expect(participant.registerCommand).toHaveBeenCalledTimes(1);
 
     expect(mockCommandHandler).toHaveReturnedWith(commands.command1);

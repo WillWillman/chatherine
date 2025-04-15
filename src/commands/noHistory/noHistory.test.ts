@@ -9,7 +9,7 @@ describe('noHistory command', () => {
   });
 
   it('calls chatStream with empty history', async () => {
-    await noHistory(chathy.mocks.extensionContext)(...chathy.mocks.handlerArgs);
+    await noHistory(chathy.mocks.commandContext)(...chathy.mocks.handlerArgs);
 
     expect(chathy.utils.chat.chatStream).toHaveBeenCalledWith([]);
 
