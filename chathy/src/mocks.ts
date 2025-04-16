@@ -8,7 +8,7 @@ export const workspaceConfiguration: vscode.WorkspaceConfiguration = {
   inspect: () => ({
     key: 'mockKey',
   }),
-}
+};
 const createUriMock = (path: string): vscode.Uri => ({
   scheme: 'file',
   authority: '',
@@ -35,7 +35,7 @@ export const languageModelChatResponse = (textFrags: string[]): vscode.LanguageM
         yield clonedFrags[i];
       }
     })(),
-  }
+  };
 };
 
 export const chatRequest: vscode.ChatRequest = {

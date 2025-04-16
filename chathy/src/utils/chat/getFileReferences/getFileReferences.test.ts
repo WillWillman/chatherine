@@ -18,13 +18,13 @@ describe('getFileReferences', () => {
       config.include,
       null,
       undefined,
-      undefined
+      undefined,
     );
     expect(result).toEqual([
       {
         id: 'file:///path/to/mock',
         value: vscode.Uri.parse('file:///path/to/mock'),
-      }
+      },
     ]);
   });
 
@@ -41,7 +41,7 @@ describe('getFileReferences', () => {
       config.include,
       config.exclude,
       undefined,
-      undefined
+      undefined,
     );
   });
 
@@ -58,7 +58,7 @@ describe('getFileReferences', () => {
       config.include,
       null,
       config.maxResults,
-      undefined
+      undefined,
     );
   });
 
@@ -76,7 +76,7 @@ describe('getFileReferences', () => {
       config.include,
       null,
       undefined,
-      token
+      token,
     );
   });
 

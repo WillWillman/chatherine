@@ -44,7 +44,7 @@ export const workspace = {
         lineCount: 10,
     }),
     workspaceFolders: [{
-        uri: Uri
+        uri: Uri,
     }],
     findFiles: jest.fn().mockResolvedValue([Uri]),
 };
@@ -61,9 +61,9 @@ export const chat = {
         iconPath: null,
         onDidReceiveFeedback: jest.fn(),
         dispose: jest.fn(),
-        requestHandler: handler
+        requestHandler: handler,
     })),
-}
+};
 
 export const LanguageModelChatMessage = {
     User: jest.fn().mockImplementation((text) => ({ role: 'user', content: text })),
