@@ -31,7 +31,8 @@
 		"reinstall:extension": "npx chathy reinstall:extension",
 		"compile": "npm run compile --workspace=chathy && npm run compile:js && npm run compile:vsix",
 		"dev": "nodemon",
-		"lint": "eslint --fix",
+		"lint": "eslint",
+		"lint:fix": "eslint --fix",
 		"test": "jest --verbose",
 		"test:watch": "jest --verbose --watch"
 	},

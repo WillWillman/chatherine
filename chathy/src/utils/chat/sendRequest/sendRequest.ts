@@ -15,5 +15,5 @@ export const sendRequest: SendRequest = (model, token) => async (messages, optio
     .map((message) => JSON.stringify(message))
     .map((message) => vscode.LanguageModelChatMessage.User(message));
 
-  return model.sendRequest(userMessages, options, token)
+  return model.sendRequest(userMessages, options, token);
 };

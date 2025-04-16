@@ -16,7 +16,7 @@ export const withFileContent: WithFileContent = (stream) => async (reference) =>
     return {
       ...reference,
       fileContent,
-    }
+    };
   } catch (error) {
     console.error('Chatherine: Error getting file content:', error);
     return reference;
@@ -52,5 +52,5 @@ const getUri = (reference: vscode.ChatPromptReference): vscode.Uri => {
   if (asUri.scheme)
     return asUri;
 
-  return
+  return;
 };

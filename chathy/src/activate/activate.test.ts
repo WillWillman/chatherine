@@ -18,7 +18,7 @@ describe('activate', () => {
       id: 'id',
       onDidReceiveFeedback: jest.fn(),
       dispose: jest.fn(),
-      requestHandler: mockCommandHandler
+      requestHandler: mockCommandHandler,
     });
   });
 

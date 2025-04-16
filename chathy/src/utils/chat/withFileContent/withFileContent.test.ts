@@ -44,7 +44,7 @@ describe('withFileContent', () => {
       new vscode.Range(
         new vscode.Position(2, 0),
         new vscode.Position(5, 0),
-      )
+      ),
     );
     expect(result).toEqual({ ...reference, fileContent: mocks.fileContent });
   });
@@ -63,7 +63,7 @@ describe('withFileContent', () => {
       new vscode.Range(
         new vscode.Position(0, 0),
         new vscode.Position(mocks.openTextDocumentResult.lineCount, 0),
-      )
+      ),
     );
     expect(result).toEqual({ ...reference, fileContent: mocks.fileContent });
   });

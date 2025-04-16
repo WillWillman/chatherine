@@ -13,18 +13,18 @@ describe('sendRequest', () => {
       code: 'const x = 1;',
       array: [1, 2, 3],
       nested: { a: 'b' },
-    }
+    },
   ];
 
   const formattedMessages = [
     {
       "content": JSON.stringify(messages[0]),
-      "role": "user"
+      "role": "user",
     },
     {
       "content": JSON.stringify(messages[1]),
-      "role": "user"
-    }
+      "role": "user",
+    },
   ];
 
   beforeEach(() => {
