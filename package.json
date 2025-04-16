@@ -61,7 +61,7 @@
 		"configuration": {
 			"title": "Chatherine",
 			"properties": {
-				"chatherine.ignoreDirectories": {
+				"chatherine.documentation.exclude": {
 					"type": "array",
 					"items": {
 						"type": "string"
@@ -76,7 +76,18 @@
 						"bin",
 						".vscode-test"
 					],
-					"description": "Directories to ignore when digging into project documentation"
+					"description": "Directories to ignore when using the /documentation prompt"
+				},
+				"chatherine.documentation.include": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						"**/package.json",
+						"**/*.md"
+					],
+					"description": "Files to include when using the /documentation prompt"
 				}
 			}
 		},
