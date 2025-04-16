@@ -1,5 +1,4 @@
 import * as chathy from '@chatherine/chathy';
-import { getFileReferences } from './getFileReferences';
 
 export const instructions = [
   'You are here to assist the users in searching thorough documentation within a workspace.',
@@ -12,9 +11,14 @@ export const instructions = [
 ];
 
 export const documentation: chathy.Command = (commandContext) => async (request, context, stream, token) => {
-  const ignoreDirectories = commandContext.workspaceConfiguration.get<string[]>('ignoreDirectories');
 
-  const extensionReferences = getFileReferences(commandContext.workspaceRoot, ignoreDirectories);
+  const extensionReferences = await chathy.utils.chat.getFileReferences({
+    base: commandContext.workspaceRoot,
+    include: `{${commandContext.workspaceConfiguration.get<string[]>('documentation.include').join(',')}}`,
+    exclude: `{${commandContext.workspaceConfiguration.get<string[]>('documentation.exclude').join(',')}}`,
+    token,
+  });
+
   const references = [...request.references, ...extensionReferences];
 
   return chathy.utils.chat.chatStream(instructions)({ ...request, references }, context, stream, token);

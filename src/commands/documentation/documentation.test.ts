@@ -1,6 +1,5 @@
 import * as chathy from '@chatherine/chathy';
 import { documentation, instructions } from './documentation';
-import * as getFileReferences from './getFileReferences';
 describe('documentation command', () => {
   const innerChatStream = jest.fn();
   const mockReference = { id: 'test-id', value: 'test content' };
@@ -8,7 +7,8 @@ describe('documentation command', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.spyOn(chathy.utils.chat, 'chatStream').mockReturnValue(innerChatStream);
-    jest.spyOn(getFileReferences, 'getFileReferences').mockReturnValue([{ id: 'test-id', value: 'test content' }]);
+    jest.spyOn(chathy.utils.chat, 'getFileReferences').mockResolvedValue([{ id: 'test-id', value: 'test content' }]);
+    jest.spyOn(chathy.mocks.commandContext.workspaceConfiguration, 'get').mockReturnValue(['**/*.md', '**/package.json']);
   });
 
   it('should run the documentation command', async () => {

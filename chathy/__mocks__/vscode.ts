@@ -46,6 +46,7 @@ export const workspace = {
     workspaceFolders: [{
         uri: Uri
     }],
+    findFiles: jest.fn().mockResolvedValue([Uri]),
 };
 
 // Static methods for vscode.Uri

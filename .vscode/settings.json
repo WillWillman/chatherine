@@ -9,7 +9,7 @@
         "dist-bundle/**",
         "extension-bundle.js"
     ],
-    "chatherine.ignoreDirectories": [
+    "chatherine.documentation.exclude": [
         "node_modules",
         "dist",
         "build",
@@ -18,5 +18,9 @@
         "lib",
         "bin",
         ".vscode-test"
+    ],
+    "chatherine.documentation.include": [
+        "**/package.json",
+        "**/*.md"
     ],
 }
