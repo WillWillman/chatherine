@@ -5,7 +5,13 @@ The `registerCommand` function provides a convenient way to register VS Code com
 ## Function Signature
 
 ```typescript
-type RegisterCommand = (extensionContext: vscode.ExtensionContext) => (command: Command) => vscode.Disposable;
+type CommandContext = {
+  extensionContext: ExtensionContext;
+  workspaceConfiguration: vscode.WorkspaceConfiguration;
+  workspaceRoot: string;
+}
+type Command = (commandContext: CommandContext) => ChatRequestHandler;
+type RegisterCommand = (commandContext: CommandContext) => (command: Command) => vscode.Disposable;
 ```
 
 ## Parameters

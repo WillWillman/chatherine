@@ -5,7 +5,7 @@ The `createChatParticipant` function creates a VS Code chat participant with the
 ## Function Signature
 
 ```typescript
-type CreateChatParticipant = (ExtensionContext: vscode.ExtensionContext, defaultCommand: string) => vscode.ChatParticipant;
+type CreateChatParticipant = (ExtensionContext: ExtensionContext, defaultCommand: string) => ChatParticipant;
 ```
 
 ## Parameters

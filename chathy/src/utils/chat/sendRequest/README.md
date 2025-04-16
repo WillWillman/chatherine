@@ -11,14 +11,17 @@ This utility simplifies the process of sending requests to a VS Code language mo
 ```typescript
 import * as chathy from '@chatherine/chathy';
 
-export const chatRequestHandler: chathy.ChatRequestHandler = async (request, context, stream, token) => {
+export const chatRequestHandler: chathy.Command = (commandContext) => async (request, context, stream, token) => {
+  const optionsLLM = {
+    // add options based on your model selection
+  };
 
   const response = await chathy.utils.chat.sendRequest(request.model, token)([
       request.prompt,
       request.toolReferences,
       references,
       context,
-    ])
+    ], optionsLLM)
 
   // Do something with response or use streamResponse to send to user
 
@@ -28,13 +31,16 @@ export const chatRequestHandler: chathy.ChatRequestHandler = async (request, con
 ## API
 
 ```typescript
+type JSONValue = Parameters<JSON['stringify']>[0];
+
 type SendRequest = (
-  model: vscode.LanguageModelChat,
-  token?: vscode.CancellationToken,
+  model: LanguageModelChat,
+  token?: CancellationToken,
 ) => (
-  messages: any[], // any that can be JSON.stringified
-  options?: vscode.LanguageModelChatRequestOptions,
-) => Promise<vscode.LanguageModelChatResponse>;
+  messages: JSONValue[],
+  options?: LanguageModelChatRequestOptions,
+) => Promise<LanguageModelChatResponse>;
+
 ```
 
 ### Parameters

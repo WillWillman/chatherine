@@ -14,8 +14,8 @@ This command is useful when you want to:
 The command uses the same underlying functionality as the `refinePrompt` command but initializes with an empty history array. This ensures that each prompt refinement request is handled independently of any previous interactions.
 
 ```typescript
-const refinePromptNoHistory: chathy.Command = (extensionContext) => async (request, _context, stream, token) => {
+const refinePromptNoHistory: chathy.Command = (commandContext) => async (request, _context, stream, token) => {
   const history = [];
-  await refinePrompt(extensionContext)(request, { history }, stream, token);
+  await refinePrompt(commandContext)(request, { history }, stream, token);
 };
 ```
