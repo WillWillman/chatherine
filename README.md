@@ -1,52 +1,101 @@
-# Chatherine - VS Code Extension
+# Chatherine - VS Code Chat Participant Extension
 
-Chatherine is a powerful chat assistant extension for Visual Studio Code that enhances your coding experience with real-time AI-powered assistance.
+Chatherine is a chat assistant for Visual Studio Code that helps you get more out of GitHub Copilot and your workspace documentation.
 
 ## Features
 
-- 💬 Integrated chat interface within VS Code
-- 🤖 AI-powered code suggestions and explanations
-- 📚 Context-aware documentation lookup
-- 🔍 Smart code search capabilities
-- 📋 Code snippet management
+- 💬 Chat directly with Chatherine in the VS Code chat window
+- ✨ Refine your prompts for Copilot using best practices
+- 📝 Search and summarize your project documentation
+- 🧹 Run stateless (no history) Copilot requests
 
 ## Installation
-
-(Coming soon!) You can install Chatherine through the VS Code Marketplace:
-
+(Marketplace Coming Soon!)
 1. Open VS Code
 2. Go to Extensions (Ctrl+Shift+X / Cmd+Shift+X)
 3. Search for "Chatherine"
 4. Click Install
 
-Alternatively, download the [VSIX file](./extension.vsix) and install it manually.
-`code --install-extension path/to/extension.vsix --force`
+Or download the [extension file](extension.vsix) and install manually:
+```sh
+code --install-extension path/to/extension.vsix --force
+```
 
-## Usage
+### Documentation Includes/Excludes
+```json
+  "chatherine.documentation.exclude": [
+      "node_modules",
+      "dist",
+      "build",
+      "out",
+      "coverage",
+      "lib",
+      "bin",
+      ".vscode-test"
+  ],
+  "chatherine.documentation.include": [
+      "**/package.json",
+      "**/*.md"
+  ]
+```
+Will merge down in this order (if defined):
+- defaultValues (above)
+- globalValue
+- workspaceValue
+- workspaceFolderValue
+- defaultLanguageValue
+- globalLanguageValue
+- workspaceLanguageValue
+- workspaceFolderLanguageValue
 
-1. Open the Chatherine panel by clicking on the Chatherine icon in the activity bar or using the command `Chatherine: Open Chat`
-2. type `/` and choose a command
-  - Will default to the `/noHistory` command if non provided
-3. Provide a prompt and hit send to get a response
+
+## How to Use
+
+1. Open the VS Code chat window (look for the Chatherine participant)
+2. Type `/` to see available commands, or just start chatting
+3. Use one of the following commands:
+
+### Available Commands
+
+- `/noHistory`
+  Send a prompt to Copilot without using previous chat history.
+
+- `/refinePrompt`
+  Get expert feedback to improve your prompt using the 4S principle (Simplicity, Specificity, Structure, Surround).
+
+- `/refinePromptNoHistory`
+  Refine your prompt without any chat history for unbiased suggestions.
+
+- `/documentation`
+  Search and summarize documentation (markdown and package.json files) in your workspace.
+
+For more details on each command, see [Commands README](src/commands/README.md).
+
+## Example Usage
+
+In the chat window, type:
+```
+@chatherine /noHistory How can I refactor this function.
+@chatherine /refinePrompt How do I write a function to merge two arrays?
+@chatherine /refinePromptNoHistory How do I write a function to merge two arrays?
+@chatherine /documentation How do i implement a new command?
+```
 
 ## Requirements
 
-- Visual Studio Code version 1.99.0 or higher (not tested with lower versions but may work)
-- An internet connection for AI-powered features
+- Visual Studio Code v1.99.0 or higher
+- Internet connection for AI features
 
-## Issues
+## Support
 
-- Please submit an [issue on the github page](https://github.com/WillWillman/chatherine/issues) with as much details as possible.
+- [Open an issue](https://github.com/WillWillman/chatherine/issues) for bugs or questions.
 
 ## Contributing
 
 Contributions are welcome! Please see our [contributing guidelines](CONTRIBUTING.md) for more details.
 
+Check out [chathy](chathy/README.md) api to build your own extension.
+
 ## License
 
-This extension is licensed under the [MIT License](LICENSE).
-
-# TO DO:
-Add chat command for docs
-
-Make chathy cli init command
+[MIT License](LICENSE)

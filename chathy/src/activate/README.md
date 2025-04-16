@@ -9,8 +9,13 @@ The `activate` function provides a streamlined way to initialize a VS Code chat 
 ## Function Signature
 
 ```typescript
-type Command = (extensionContext: vscode.ExtensionContext) => vscode.ChatRequestHandler;
-type Activate = (commands: Record<string, Command>, defaultCommand?: string) => (extensionContext: vscode.ExtensionContext) => void;
+type CommandContext = {
+  extensionContext: ExtensionContext;
+  workspaceConfiguration: vscode.WorkspaceConfiguration;
+  workspaceRoot: string;
+}
+type Command = (commandContext: CommandContext) => ChatRequestHandler;
+type Activate = (commands: Record<string, Command>, defaultCommand?: string) => (extensionContext: ExtensionContext) => void;
 ```
 
 ## Parameters

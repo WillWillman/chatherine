@@ -10,6 +10,9 @@ Provides a high-level abstraction for handling VS Code chat requests by combinin
 ## Granular Chat Utilities
 - For when you need more control over how a chat request is processed than ChatStream offers
 
+### [GetFileReferences](./getFileReferences/README.md)
+Provides a function for finding files matching a glob pattern and generating chat reference objects from them. Useful when you need to include a while directory based on include/exclude globs.
+
 ### [SendRequest](./sendRequest/README.md)
 Simplifies the process of sending requests to a VS Code language model chat API by handling message formatting and request preparation. Converts messages to a string format and wraps them as user messages for the language model.
 
@@ -66,6 +69,37 @@ export const customChatCommand: chathy.Command = (_extensionContext) => async (r
   ]);
 
   // Stream response to chat UI
+  return chathy.utils.chat.streamResponse(stream)(response);
+};
+```
+
+### Using getFileReferences to include files by pattern
+```typescript
+import * as chathy from '@chatherine/chathy';
+import * as vscode from 'vscode';
+
+export const globBasedChatCommand: chathy.Command = (_extensionContext) => async (request, context, stream, token) => {
+  // Find all TypeScript files in the src directory
+  const fileReferences = await chathy.utils.chat.getFileReferences({
+    base: vscode.workspace.workspaceFolders?.[0] || '',
+    include: 'src/**/*.ts',
+    exclude: '**/node_modules/**',
+    token,
+  });
+
+  // Enrich references with file content
+  const enrichedReferences = await Promise.all(
+    fileReferences.map(chathy.utils.chat.withFileContent(stream))
+  );
+
+  // Send request with both explicitly referenced files and pattern-matched files
+  const response = await chathy.utils.chat.sendRequest(request.model, token)([
+    'Consider both the user-selected files and all TypeScript files from the src directory:',
+    request.prompt,
+    ...request.references,  // Files explicitly referenced by the user
+    ...enrichedReferences,  // Files matching the glob pattern
+  ]);
+
   return chathy.utils.chat.streamResponse(stream)(response);
 };
 ```

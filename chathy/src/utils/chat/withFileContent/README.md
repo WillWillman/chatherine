@@ -11,23 +11,22 @@ This utility takes a VS Code chat prompt reference (which could be a file URI, l
 ```typescript
 import * as chathy from '@chatherine/chathy';
 
-export const chatRequestHandler: chathy.ChatRequestHandler = async (request, context, stream, token) => {
+export const chatRequestHandler: chathy.Command = (commandContext) => async (request, context, stream, token) => {
 
   const references = await Promise.all(request.references.map(utils.chat.withFileContent));
 
-  // sendRequest will stringify the resulting references
+  // note if you use sendRequest it will stringify the resulting references for you
   const response = await utils.chat.sendRequest(request.model, token)([ request.prompt, references ])
 
   // Do something with response such as call streamResponse
-  await utils.chat.streamResponse(stream)(response)
 };
 ```
 
 ## API
 
 ```typescript
-const withFileContent = async (reference: vscode.ChatPromptReference) =>
-  Promise<vscode.ChatPromptReference & { fileContent?: string }>;
+type Response = vscode.ChatPromptReference & { fileContent?: string };
+type WithFileContent = (stream: vscode.ChatResponseStream) =>  async (reference: vscode.ChatPromptReference) => Promise<Response>;
 ```
 
 ### Parameters
@@ -45,5 +44,6 @@ The utility:
 2. Opens the document using VS Code workspace API
 3. Determines the range to extract (full file or specific range)
 4. Gets the text content for the specified range
-5. Returns an enriched reference with the original properties plus the file content
-6. Handles errors gracefully, returning the original reference if content extraction fails
+5. Streams the file references to chat for the references used dropdown.
+6. Returns an enriched reference with the original properties plus the file content
+7. Handles errors gracefully, returning the original reference if content extraction fails

@@ -14,10 +14,13 @@ This utility simplifies chat interactions by combining `withFileContent`, `sendR
 ## Usage
 
 ```typescript
+
+```
+
+```typescript
 import * as chathy from '@chatherine/chathy';
 
-
-export const myCommand: chathy.Command = (_extensionContext) => async (request, context, stream, token) => {
+export const myCommand: chathy.Command = (commandContext) => async (request, context, stream, token) => {
   const instructions = [
     'You are an assistant which helps with a specific task',
     // add other instructions as needed

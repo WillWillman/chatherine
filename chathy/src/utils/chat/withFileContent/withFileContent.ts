@@ -1,6 +1,9 @@
 import * as vscode from 'vscode';
 
-export const withFileContent = (stream: vscode.ChatResponseStream) =>  async (reference: vscode.ChatPromptReference) => {
+type Response = vscode.ChatPromptReference & { fileContent?: string };
+type WithFileContent = (stream: vscode.ChatResponseStream) => (reference: vscode.ChatPromptReference) => Promise<Response>;
+
+export const withFileContent: WithFileContent = (stream) => async (reference) => {
   try {
     const uri = getUri(reference);
     const document = await vscode.workspace.openTextDocument(uri);

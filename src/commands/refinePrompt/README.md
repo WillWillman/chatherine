@@ -36,10 +36,9 @@ const instructions = [
   'Section: Refined prompt',
   'Section: Explanation for what changed',
   'Section: Questions that are still unclear with possible answers listed',
-  'User Prompt:',
 ];
 
-const refinePrompt: chathy.Command = (_extensionContext) => async (request, context, stream, token) => {
+const refinePrompt: chathy.Command = (_commandContext) => async (request, context, stream, token) => {
   const history = context.history.slice(-2);
   await chathy.utils.chat.chatStream(instructions)(request, { history }, stream, token);
 };

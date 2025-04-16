@@ -11,7 +11,7 @@ This utility takes a chat response stream and a language model response, then st
 ```typescript
 import * as chathy from '@chatherine/chathy';
 
-export const chatRequestHandler: chathy.ChatRequestHandler = async (request, context, stream, token) => {
+export const chatRequestHandler: chathy.Command = (commandContext) => async (request, context, stream, token) => {
 
   // send a request to an LLM to get a LanguageModelChatResponse
   const response = await chathy.utils.chat.sendRequest(request.model, token)([request.prompt])
@@ -25,7 +25,7 @@ export const chatRequestHandler: chathy.ChatRequestHandler = async (request, con
 ## API
 
 ```typescript
-type StreamResponse = (stream: vscode.ChatResponseStream) => (response: vscode.LanguageModelChatResponse) => Promise<string>;
+type StreamResponse = (stream: ChatResponseStream) => (response: LanguageModelChatResponse) => Promise<string>;
 ```
 
 ### Parameters
