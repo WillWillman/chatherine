@@ -1,0 +1,14 @@
+name: 'Test'
+description: 'Runs tests'
+
+runs:
+  using: 'composite'
+  steps:
+
+    - name: Lint
+      run: npm run lint
+      shell: bash
+
+    - name: Run tests
+      run: npm run test
+      shell: bash
