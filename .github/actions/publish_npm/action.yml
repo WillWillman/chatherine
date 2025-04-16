@@ -1,0 +1,23 @@
+name: 'Build and Test'
+description: 'Publishes a package to npm'
+inputs:
+  package:
+    description: 'The package to publish'
+    required: true
+    default: 'chathy'
+  publish-command:
+    description: 'Command to publish the package'
+    required: false
+    default: 'npm publish'
+  NPM_TOKEN:
+    description: 'NPM token for authentication'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Publish to npm
+      working-directory: src/packages/${{ inputs.package }}
+      run: ${{ inputs.publish-command }}
+      env:
+        NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}

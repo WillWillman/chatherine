@@ -21,8 +21,11 @@ jobs:
         with:
           ref: ${{ inputs.ref }}
 
+      - name: Build and Test
+        uses: ./.github/workflows/actions/build-and-test
+
       - name: Publish ${{ inputs.package }} @ ${{ inputs.ref }}
-        uses: ./actions/publish
+        uses: ./.github/workflows/actions/publish
         with:
           node-version: 20
           package: ${{ inputs.package }}

@@ -1,5 +1,5 @@
-name: 'Build and Test'
-description: 'Checks out code, sets up Node.js, installs dependencies, compiles, and runs tests'
+name: 'Build'
+description: 'Sets up Node.js, installs dependencies, compiles'
 inputs:
   node-version:
     description: 'Node version to use'
@@ -13,10 +13,6 @@ inputs:
     description: 'Command to compile the code'
     required: false
     default: 'npm run compile'
-  test-command:
-    description: 'Command to run tests'
-    required: false
-    default: 'npm run test'
 
 runs:
   using: 'composite'
@@ -32,8 +28,4 @@ runs:
 
     - name: Compile
       run: ${{ inputs.compile-command }}
-      shell: bash
-
-    - name: Run tests
-      run: ${{ inputs.test-command }}
       shell: bash
