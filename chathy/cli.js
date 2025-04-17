@@ -1,10 +1,23 @@
 #!/usr/bin/env node
 /* eslint-disable @typescript-eslint/no-require-imports */
 
+const path = require('path');
+const child_process = require('child_process');
+const init = require(path.join(__dirname, 'init'));
 const [COMMAND, ARG] = process.argv.slice(2);
-const exec = (cmd) => () => require('child_process').execSync(cmd, { stdio: 'inherit' });
+
+const exec = (cmd) => () => {
+  try {
+    child_process.execSync(cmd, { stdio: 'inherit' });
+  } catch (error) {
+    console.error(`Error executing command: ${cmd}`);
+    console.error(error);
+    process.exit(1);
+  }
+};
 
 const command = {
+  'init': init,
   'compile:vsix': exec('vsce package -o extension.vsix'),
   'install:extension': exec('code --install-extension extension.vsix --force'),
   'uninstall:extension': exec(`code --uninstall-extension ${ARG} --force`),
@@ -17,4 +30,6 @@ if (!command) {
   process.exit(1);
 }
 
+
 command();
+process.exit(0);

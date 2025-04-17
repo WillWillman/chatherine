@@ -31,7 +31,7 @@
     "README.md"
   ],
   "scripts": {
-    "compile": "rm -rf ./dist && tsc -p ./",
+    "compile": "rm -rf ./dist && tsc -p ./ && cp ./cli.js ./dist/cli.js && cp -rf ./init ./dist/init",
     "publish": "npm publish",
     "lint": "eslint --fix"
   },

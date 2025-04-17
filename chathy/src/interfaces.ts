@@ -4,6 +4,7 @@ export type ChatParticipant = vscode.ChatParticipant;
 export type ChatRequestHandler = vscode.ChatRequestHandler;
 export type ExtensionContext = vscode.ExtensionContext
 export type ChatRequest = vscode.ChatRequest;
+export type ChatResult = vscode.ChatResult;
 export type ChatContext = vscode.ChatContext;
 export type ChatResponseStream = vscode.ChatResponseStream;
 export type CancellationToken = vscode.CancellationToken;
