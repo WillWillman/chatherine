@@ -4,18 +4,41 @@ A typescript framework to streamline building chat participants for VS Code.
 
 ## Installation
 
-```bash
-npm install @chatherine/chathy
-# npx chathy init coming soon!
-```
+### Brand New Extension (See [init](./init/README.md))
+  ```bash
+  npx chathy init
+  ```
+
+### Adding to an existing node project/extension
+  ```bash
+  npm install @chatherine/chathy]
+  ```
 
 ## Usage
 
 ```typescript
 // extension.ts
-import * as vscode from 'vscode';
 import * as chathy from '@chatherine/chathy';
 import * as commands from './commands';
+
+// chathy.CommandContext
+type CommandContext = {
+  extensionContext: chathy.ExtensionContext;
+  workspaceConfiguration: chathy.WorkspaceConfiguration;
+  workspaceRoot: string;
+}
+
+// chathy.ChatRequestHandler
+type chatHandlerResult = chathy.ChatResult | void | undefined | null;
+type ChatRequestHandler = (
+  request: chathy.ChatRequest,
+  context: chathy.ChatContext,
+  response: chathy.ChatResponseStream,
+  token: chathy.CancellationToken,
+  ) => chatHandlerResult | Promise<chatHandlerResult>;
+
+// chathy.Command
+type Command = (commandContext: CommandContext) => chathy.ChatRequestHandler;
 
 export const activate = chathy.activate(commands, commands.someCommandUsedForDefault.name);
 ```
@@ -26,20 +49,20 @@ export const activate = chathy.activate(commands, commands.someCommandUsedForDef
 - Provide a consistent API pattern with curried functions
 - Can be used independently or combined for complete workflows
 
-### Core Functionality
+## Core Functionality
 
-#### [Activate](./src/activate/README.md)
+### [Activate](./src/activate/README.md)
 Handles the activation of VS Code extensions, setting up command registration and participant creation. Provides utilities for extension initialization and lifecycle management.
 
-#### [Create Chat Participant](./src/createChatParticipant/README.md)
+### [Create Chat Participant](./src/createChatParticipant/README.md)
 Creates a chat participant for VS Code with configurable name, icon, and command handlers. Enables interactive chat-based functionality in the VS Code interface.
 
-#### [Register Command](./src/registerCommand/README.md)
+### [Register Command](./src/registerCommand/README.md)
 Registers commands with VS Code's command system, allowing integration of custom commands with the extension. Provides a consistent API for command registration and execution.
 
-### Utilities
+## Utilities
 
-#### [Utils](./src/utils/README.md)
+### [Utils](./src/utils/README.md)
 A collection of utilities for common operations:
 
 - [Chat Utils](./src/utils/chat/README.md) - Tools for handling chat interactions with language models
@@ -48,6 +71,9 @@ A collection of utilities for common operations:
 ## CLI Commands
 
 ```bash
+# initialize a fresh chat participant using the @chatherine/chathy package
+npx chathy init
+
 # Compile extension to vsix file
 npx chathy compile:vsix
 
@@ -62,9 +88,6 @@ npx chathy uninstall:extension
 
 # Reinstall extension (uninstall + install)
 npx chathy reinstall:extension
-
-# Initialize a new Chat Participant project (Coming Soon)
-npx chathy init
 ```
 
 ## Mocks

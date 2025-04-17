@@ -5,21 +5,19 @@
 		"lib": [
 			"esnext"
 		],
-    "declaration": true,
 		"sourceMap": true,
-		"rootDir": "src",
+		"rootDir": ".",
 		"outDir": "dist",
 		"esModuleInterop": true,
 		"isolatedModules": true,
 		"resolveJsonModule": true
 	},
 	"include": [
-		"src/**/*"
+		"src/**/*",
+		"chathy"
 	],
 	"exclude": [
 		"**/*.test.ts",
-		"__mocks__",
 		"**/node_modules/**",
-		"init"
 	],
 }

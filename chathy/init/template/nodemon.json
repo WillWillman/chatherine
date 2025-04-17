@@ -1,0 +1,14 @@
+{
+  "exec": "npm run compile && npm run install:extension",
+  "ext": "ts,js,json",
+  "watch": [
+    "./src/**"
+  ],
+  "ignore": [
+    "**/dist/**",
+    "**/lib/**",
+    "**/node_modules/**",
+    "**/bin/**",
+    "*.test.ts"
+  ]
+}

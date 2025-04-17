@@ -1,0 +1,99 @@
+{
+	"name": "${USERINPUT_NAME}",
+	"version": "0.0.0",
+	"icon": "participant-logo.png",
+	"publisher": "${USERINPUT_PUBLISHER}",
+	"displayName": "${USERINPUT_DISPLAY_NAME}",
+	"description": "${USERINPUT_DESCRIPTION}",
+	"engines": {
+		"node": "^20",
+		"vscode": "^1.99.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/${USERINPUT_PUBLISHER}/${USERINPUT_NAME}.git"
+	},
+	"categories": [],
+	"main": "./extension.js",
+	"scripts": {
+		"bundle:js": "ncc build dist/src/extension.js --external vscode --minify --no-cache -o . && mv ./index.js ./extension.js",
+		"compile:js": "rm -rf ./dist && tsc -p ./ && npm run bundle:js && rm -rf ./dist",
+		"compile:vsix": "npx chathy compile:vsix",
+		"publish:extension": "npx chathy publish:extension",
+		"install:extension": "npx chathy install:extension",
+		"uninstall:extension": "npx chathy uninstall:extension ${USERINPUT_PUBLISHER}.${USERINPUT_NAME}",
+		"reinstall:extension": "npx chathy reinstall:extension",
+		"compile": "npm run compile:js && npm run compile:vsix",
+		"dev": "nodemon",
+		"lint": "eslint",
+		"lint:fix": "eslint --fix",
+		"test": "jest --verbose",
+		"test:watch": "jest --verbose --watch"
+	},
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"dependencies": {
+		"@chatherine/chathy": "*"
+	},
+	"devDependencies": {
+		"@types/jest": "^29.5.14",
+		"@types/node": "^20.17.30",
+		"eslint": "^9.13.0",
+		"jest": "^29.7.0",
+		"nodemon": "^3.1.9",
+		"ts-jest": "^29.3.1",
+		"typescript": "^5.8.2",
+		"typescript-eslint": "^8.26.0"
+	},
+	"contributes": {
+		"configuration": {
+			"title": "${USERINPUT_NAME}",
+			"properties": {
+				"${USERINPUT_NAME}.documentation.exclude": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						"node_modules",
+						"dist",
+						"build",
+						"out",
+						"coverage",
+						"lib",
+						"bin",
+						".vscode-test"
+					],
+					"description": "Directories to ignore when using the /documentation prompt"
+				},
+				"${USERINPUT_NAME}.documentation.include": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						"**/package.json",
+						"**/*.md"
+					],
+					"description": "Files to include when using the /documentation prompt"
+				}
+			}
+		},
+		"chatParticipants": [
+			{
+				"id": "${USERINPUT_NAME}",
+				"name": "${USERINPUT_NAME}",
+				"fullName": "${USERINPUT_NAME}",
+				"description": "Custom Chat Participant! ${USERINPUT_DESCRIPTION}",
+				"isSticky": true,
+				"commands": [
+					{
+						"name": "documentation",
+						"description": "Dive into your documentation!"
+					}
+				]
+			}
+		]
+	}
+}

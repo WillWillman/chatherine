@@ -1,0 +1,16 @@
+{
+    "${USERINPUT_NAME}.documentation.exclude": [
+        "node_modules",
+        "dist",
+        "build",
+        "out",
+        "coverage",
+        "lib",
+        "bin",
+        ".vscode-test"
+    ],
+    "${USERINPUT_NAME}.documentation.include": [
+        "**/package.json",
+        "**/*.md"
+    ],
+}

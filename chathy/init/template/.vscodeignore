@@ -1,0 +1,12 @@
+.github
+.vscode/**
+.vscode-test/**
+**/node_modules/**
+src/**
+.temp-packaging/**
+.gitignore
+*.vsix
+
+**/*.ts
+**/*.map
+!dist/**/*
