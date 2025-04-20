@@ -7,7 +7,7 @@ describe('withFileContent', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     jest.spyOn(vscode.workspace, 'openTextDocument').mockResolvedValue(mocks.openTextDocumentResult);
-    jest.spyOn(console, 'error').mockImplementation(() => { });
+    jest.spyOn(stream, 'progress').mockImplementation(() => { });
     jest.spyOn(mocks.openTextDocumentResult, 'getText');
   });
 
@@ -79,7 +79,7 @@ describe('withFileContent', () => {
     const result = await withFileContent(stream)(reference);
 
     expect(vscode.workspace.openTextDocument).toHaveBeenCalledWith(reference.value);
-    expect(console.error).toHaveBeenCalledWith('Chatherine: Error getting file content:', error);
+    expect(stream.progress).toHaveBeenCalledWith('Chatherine: Error getting file content: ' + error.message);
     expect(result).toEqual(reference);
   });
 });

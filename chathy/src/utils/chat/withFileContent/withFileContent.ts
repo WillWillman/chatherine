@@ -18,7 +18,7 @@ export const withFileContent: WithFileContent = (stream) => async (reference) =>
       fileContent,
     };
   } catch (error) {
-    console.error('Chatherine: Error getting file content:', error);
+    stream.progress('Chatherine: Error getting file content: ' + error.message);
     return reference;
   }
 };
