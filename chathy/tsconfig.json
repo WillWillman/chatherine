@@ -14,13 +14,11 @@
 		"resolveJsonModule": true
 	},
 	"include": [
-		"src/**/*",
-		"src/chathy.ts",
-		"src/mocks/mocks.ts"
+		"src/**/*"
 	],
 	"exclude": [
 		"**/*.test.ts",
-		"__mocks__/vscode/vscode.ts",
+		"__mocks__/**",
 		"**/node_modules/**",
 		"init"
 	],

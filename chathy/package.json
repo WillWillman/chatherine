@@ -32,7 +32,7 @@
   ],
   "scripts": {
     "compile": "rm -rf ./dist && tsc -p ./ && cp ./cli.js ./dist/cli.js && cp -rf ./init ./dist/init",
-    "publish": "npm publish",
+    "prepublishOnly": "npm ci --omit=dev && npm run compile",
     "lint": "eslint --fix"
   },
   "bugs": {
