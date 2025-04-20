@@ -22,18 +22,17 @@
 	],
 	"main": "./extension.js",
 	"scripts": {
-		"bundle:js": "ncc build dist/src/extension.js --external vscode --minify --no-cache -o . && mv ./index.js ./extension.js",
-		"compile:js": "rm -rf ./dist && tsc -p ./ && npm run bundle:js && rm -rf ./dist",
-		"compile:vsix": "npx chathy compile:vsix",
+		"build:extension": "rm -rf ./dist && tsc -p ./ && ncc build dist/src/extension.js --external vscode --minify --no-cache -o . && mv ./index.js ./extension.js && rm -rf ./dist",
+		"compile:extension": "npx chathy compile:vsix",
 		"publish:extension": "npx chathy publish:extension",
 		"install:extension": "npx chathy install:extension",
 		"uninstall:extension": "npx chathy uninstall:extension willman-codes.chatherine",
 		"reinstall:extension": "npx chathy reinstall:extension",
-		"compile:dev": "npm run compile --workspace=chathy && npm run compile:js && npm run compile:vsix",
-		"compile:production": "npm run compile:js && npm run compile:vsix",
-		"compile": "cross-env NODE_ENV=${NODE_ENV:-development} npm run $([ \"$NODE_ENV\" = \"production\" ] && echo \"compile:production\" || echo \"compile:dev\")",
-    "vscode:prepublish:production": "npm ci --omit=dev --workspaces=false && npm run compile:production",
-		"dev": "nodemon",
+		"vscode:prepublish:dev": "npm run compile --workspace=chathy && npm run build:extension",
+		"vscode:prepublish:production": "npm ci --omit=dev --workspaces=false && npm run build:extension",
+    "vscode:prepublish": "npm run vscode:prepublish:${NODE_ENV:-dev}",
+		"dev": "npm install && npm run compile:extension && npm run install:extension",
+		"dev:watch": "nodemon",
 		"lint": "eslint",
 		"lint:fix": "eslint --fix",
 		"test": "jest --verbose",
@@ -47,8 +46,7 @@
 		"chathy"
 	],
 	"dependencies": {
-		"@chatherine/chathy": "0.0.0",
-		"@modelcontextprotocol/sdk": "^1.10.1"
+		"@chatherine/chathy": "pre-release"
 	},
 	"devDependencies": {
 		"@types/jest": "^29.5.14",
@@ -56,7 +54,6 @@
 		"@types/vscode": "^1.99.0",
 		"@vercel/ncc": "^0.38.3",
 		"@vscode/vsce": "^3.3.2",
-		"cross-env": "^7.0.3",
 		"eslint": "^9.13.0",
 		"jest": "^29.7.0",
 		"nodemon": "^3.1.9",
