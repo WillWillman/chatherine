@@ -23,20 +23,21 @@ code --install-extension path/to/extension.vsix --force
 
 ### Documentation Includes/Excludes
 ```json
-  "chatherine.documentation.exclude": [
-      "node_modules",
-      "dist",
-      "build",
-      "out",
-      "coverage",
-      "lib",
-      "bin",
-      ".vscode-test"
-  ],
-  "chatherine.documentation.include": [
-      "**/package.json",
-      "**/*.md"
-  ]
+"chatherine.documentation.exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/out/**",
+    "**/coverage/**",
+    "**/lib/**",
+    "**/bin/**",
+    "**/.vscode-test/**",
+    "**/init/**"
+],
+"chatherine.documentation.include": [
+    "**/package.json",
+    "**/*.md"
+]
 ```
 Will merge down in this order (if defined):
 - defaultValues (above)
@@ -78,7 +79,7 @@ In the chat window, type:
 @chatherine /noHistory How can I refactor this function.
 @chatherine /refinePrompt How do I write a function to merge two arrays?
 @chatherine /refinePromptNoHistory How do I write a function to merge two arrays?
-@chatherine /documentation How do i implement a new command?
+@chatherine /documentation How do I implement a new command?
 ```
 
 ## Requirements

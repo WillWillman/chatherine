@@ -18,20 +18,21 @@ The extension is activated through the `activate` function in this file, which:
 - **Refine Prompt No History**: Refines prompts without conversation history.
 - **Documentation**: Assists in searching and analyzing documentation within a workspace.
       ```json
-        "chatherine.documentation.exclude": [
-            "node_modules",
-            "dist",
-            "build",
-            "out",
-            "coverage",
-            "lib",
-            "bin",
-            ".vscode-test"
-        ],
-        "chatherine.documentation.include": [
-            "**/package.json",
-            "**/*.md"
-        ]
+      "chatherine.documentation.exclude": [
+          "**/node_modules/**",
+          "**/dist/**",
+          "**/build/**",
+          "**/out/**",
+          "**/coverage/**",
+          "**/lib/**",
+          "**/bin/**",
+          "**/.vscode-test/**",
+          "**/init/**"
+      ],
+      "chatherine.documentation.include": [
+          "**/package.json",
+          "**/*.md"
+      ]
       ```
 Will merge down in this order (if defined):
 - defaultValues (above set in package.json AND .vscode/settings.json for reference purposes)
@@ -55,6 +56,15 @@ The extension follows modern JavaScript practices:
 - Uses arrow functions
 - Employs functional programming principles
 - Leverages TypeScript for type safety
+
+## Model Context Protocol (MCP) Integration
+
+This extension includes Model Context Protocol (MCP) integration to enable enhanced testing capabilities:
+
+- Uses the `runUnitTests` MCP tool for executing and validating tests
+- Configured via `.vscode/mcp.json` to provide project-specific MCP tools
+- Integrates with the `@modelcontextprotocol/sdk` package for communication with language models
+- Enables effective testing of chat-based interactions without direct API dependencies
 
 ## Usage
 

@@ -8,14 +8,11 @@ The `chatStream` utility provides a high-level abstraction for handling VS Code 
 1. Processes file references to include their content
 2. Sends a structured request to the language model
 3. Streams the response back to the VS Code chat UI
+4. If the users selected model is invalid for the request it will retry with the base 'copilot' model.
 
 This utility simplifies chat interactions by combining `withFileContent`, `sendRequest`, and `streamResponse` into a cohesive workflow.
 
 ## Usage
-
-```typescript
-
-```
 
 ```typescript
 import * as chathy from '@chatherine/chathy';

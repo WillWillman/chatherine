@@ -4,7 +4,7 @@
 The `refinePromptNoHistory` command helps engineers improve their prompts for GitHub Copilot without preserving any conversation history.
 
 ## Functionality
-- Provides the same prompt refinement capabilities as the standard `refinePrompt` command while additionally removing chat history
+- Provides the same prompt refinement capabilities as the standard `refinePrompt` command while additionally removing chat history, reducing bias in the response to the given prompt.
 
 ## Usage
 This command is useful when you want to:
