@@ -1,6 +1,6 @@
 {
   "name": "@chatherine/chathy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "willman.codes",
   "license": "MIT",
 	"private": false,
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/willman-codes/chatherine.git"
+    "url": "https://github.com/WillWillman/chatherine"
   },
   "categories": [
     "AI",

@@ -4,14 +4,14 @@ A typescript framework to streamline building chat participants for VS Code.
 
 ## Installation
 
-### Brand New Extension (See [init](./init/README.md))
+### Brand New Extension (See [init](/chathy/init/README.md))
   ```bash
   npx chathy init
   ```
 
 ### Adding to an existing node project/extension
   ```bash
-  npm install @chatherine/chathy]
+  npm install @chatherine/chathy
   ```
 
 ## Usage
@@ -51,21 +51,21 @@ export const activate = chathy.activate(commands, commands.someCommandUsedForDef
 
 ## Core Functionality
 
-### [Activate](./src/activate/README.md)
+### [Activate](/chathy/src/activate/README.md)
 Handles the activation of VS Code extensions, setting up command registration and participant creation. Provides utilities for extension initialization and lifecycle management.
 
-### [Create Chat Participant](./src/createChatParticipant/README.md)
+### [Create Chat Participant](/chathy/src/createChatParticipant/README.md)
 Creates a chat participant for VS Code with configurable name, icon, and command handlers. Enables interactive chat-based functionality in the VS Code interface.
 
-### [Register Command](./src/registerCommand/README.md)
+### [Register Command](/chathy/src/registerCommand/README.md)
 Registers commands with VS Code's command system, allowing integration of custom commands with the extension. Provides a consistent API for command registration and execution.
 
 ## Utilities
 
-### [Utils](./src/utils/README.md)
+### [Utils](/chathy/src/utils/README.md)
 A collection of utilities for common operations:
 
-- [Chat Utils](./src/utils/chat/README.md) - Tools for handling chat interactions with language models
+- [Chat Utils](/chathy/src/utils/chat/README.md) - Tools for handling chat interactions with language models
 - Editor Utils (Coming Soon) - Utilities for interacting with the VS Code editor
 
 ## Model Context Protocol (MCP) Integration
