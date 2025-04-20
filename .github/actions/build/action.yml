@@ -12,7 +12,7 @@ inputs:
   compile-command:
     description: 'Command to compile the code'
     required: false
-    default: 'npm run compile'
+    default: 'npm run compile:extension'
 
 runs:
   using: 'composite'

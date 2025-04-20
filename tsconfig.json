@@ -13,11 +13,11 @@
 		"resolveJsonModule": true
 	},
 	"include": [
-		"src/**/*",
-		"chathy"
+		"src/**/*"
 	],
 	"exclude": [
 		"**/*.test.ts",
 		"**/node_modules/**",
+		"chathy"
 	],
 }
