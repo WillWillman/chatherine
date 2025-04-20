@@ -1,0 +1,10 @@
+export { chat } from './chat';
+export { commands } from './commands';
+export { LanguageModelChatMessage } from './LanguageModelChatMessage';
+export { Position } from './Position';
+export { Range } from './Range';
+export { TextEditor } from './TextEditor';
+export { Uri } from './Uri';
+export { window } from './window';
+export { workspace } from './workspace';
+export { workspaceFolders } from './workspaceFolders';
