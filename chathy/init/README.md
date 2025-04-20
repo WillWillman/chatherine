@@ -6,7 +6,7 @@ A CLI tool to initialize a new VS Code chat participant extension project.
 
 
 ```bash
-npx chathy init
+npx --package=@chatherine/chathy chathy init
 ```
 This command starts an interactive setup process that:
 

@@ -6,12 +6,13 @@ A typescript framework to streamline building chat participants for VS Code.
 
 ### Brand New Extension (See [init](/chathy/init/README.md))
   ```bash
-  npx chathy init
+  npx --package=@chatherine/chathy chathy init
   ```
 
 ### Adding to an existing node project/extension
   ```bash
   npm install @chatherine/chathy
+  npx chathy init
   ```
 
 ## Usage

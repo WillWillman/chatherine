@@ -3,7 +3,7 @@
 
 const path = require('path');
 const child_process = require('child_process');
-const init = require(path.join(__dirname, 'init'));
+const init = require(path.join(__dirname, 'dist', 'init'));
 const [COMMAND, ARG] = process.argv.slice(2);
 
 const exec = (cmd) => () => {
