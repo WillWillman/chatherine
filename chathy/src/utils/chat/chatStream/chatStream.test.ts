@@ -20,6 +20,7 @@ describe('chatStream', () => {
   it('should chatStream with instructions', async () => {
     const [request, context, stream, token] = mocks.handlerArgs;
     const instructions = ['test instruction'];
+    jest.replaceProperty(request, 'prompt', 'some prompt');
     await chatStream(instructions)(request, context, stream, token);
 
     request.references.forEach((ref, index) => {
@@ -31,7 +32,8 @@ describe('chatStream', () => {
     expect(utils.sendRequest).toHaveBeenCalledWith(request.model, token);
     expect(utils.sendRequest(request.model, token)).toHaveBeenCalledWith([
       ...instructions,
-      request.prompt,
+      'User prompt:',
+      'some prompt',
       request.toolReferences,
       await Promise.all(request.references.map(mockWithFileContent)),
       context,
@@ -45,7 +47,7 @@ describe('chatStream', () => {
     await chatStream()(request, context, stream, token);
 
     expect(utils.sendRequest(request.model, token)).toHaveBeenCalledWith([
-      request.prompt,
+      'User prompt:',
       request.toolReferences,
       await Promise.all(request.references.map(mockWithFileContent)),
       context,
