@@ -9,6 +9,7 @@ const [COMMAND, ARG] = process.argv.slice(2);
 const exec = (cmd) => () => {
   try {
     child_process.execSync(cmd, { stdio: 'inherit' });
+    process.exit(0);
   } catch (error) {
     console.error(`Error executing command: ${cmd}`);
     console.error(error);
@@ -32,4 +33,3 @@ if (!command) {
 
 
 command();
-process.exit(0);

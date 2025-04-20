@@ -51,4 +51,5 @@ module.exports = async () => {
   copyAndReplacePlaceholders(templateDir, currentDir, placeholders);
 
   console.log('Initialization complete!');
+  process.exit(0);
 };

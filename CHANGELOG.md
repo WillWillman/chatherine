@@ -53,3 +53,8 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 
 ### Changed
 - Update Logo
+
+## [0.0.7] - 2025-04-20
+
+### Changed
+- support async cli
