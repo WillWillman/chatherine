@@ -3,7 +3,14 @@
 
 const path = require('path');
 const child_process = require('child_process');
-const init = require(path.join(__dirname, 'dist', 'init'));
+const fs = require('fs');
+
+const distInitPath = path.join(__dirname, 'dist', 'init');
+const initPath = fs.existsSync(distInitPath)
+  ? distInitPath
+  : path.join(__dirname, 'init');
+const init = require(initPath);
+
 const [COMMAND, ARG] = process.argv.slice(2);
 
 const exec = (cmd) => () => {
