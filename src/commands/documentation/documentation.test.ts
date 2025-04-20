@@ -1,5 +1,6 @@
 import * as chathy from '@chatherine/chathy';
 import { documentation, instructions } from './documentation';
+
 describe('documentation command', () => {
   const innerChatStream = jest.fn();
   const mockReference = { id: 'test-id', value: 'test content' };
@@ -15,11 +16,11 @@ describe('documentation command', () => {
 
     await documentation(chathy.mocks.commandContext)(...chathy.mocks.handlerArgs);
 
-    jest.replaceProperty(chathy.mocks.chatContext, 'history', chathy.mocks.chatContext.history.slice(-2));
+    const [request, _context, stream, token] = chathy.mocks.handlerArgs;
     jest.replaceProperty(chathy.mocks.chatRequest, 'references', [...chathy.mocks.chatRequest.references, mockReference]);
 
     expect(chathy.utils.chat.chatStream).toHaveBeenCalledWith(instructions);
-    expect(innerChatStream).toHaveBeenCalledWith(...chathy.mocks.handlerArgs);
+    expect(innerChatStream).toHaveBeenCalledWith(request, null, stream, token);
   });
 
 });
