@@ -1,6 +1,6 @@
 {
 	"name": "chatherine",
-	"version": "0.0.0",
+	"version": "0.0.4",
 	"icon": "participant-logo.png",
 	"publisher": "willman-codes",
 	"displayName": "Chatherine: Your Copilot Flight Attendant",
@@ -29,8 +29,8 @@
 		"uninstall:extension": "npx chathy uninstall:extension willman-codes.chatherine",
 		"reinstall:extension": "npx chathy reinstall:extension",
 		"vscode:prepublish:dev": "npm run compile --workspace=chathy && npm run build:extension",
-		"vscode:prepublish:production": "npm ci --omit=dev --workspaces=false && npm run build:extension",
-    "vscode:prepublish": "npm run vscode:prepublish:${NODE_ENV:-dev}",
+		"vscode:prepublish:production": "npm ci --omit=dev && npm run build:extension",
+		"vscode:prepublish": "npm run vscode:prepublish:${NODE_ENV:-dev}",
 		"dev": "npm install && npm run compile:extension && npm run install:extension",
 		"dev:watch": "nodemon",
 		"lint": "eslint",
@@ -46,14 +46,13 @@
 		"chathy"
 	],
 	"dependencies": {
-		"@chatherine/chathy": "pre-release"
+		"@chatherine/chathy": "workspace:chathy",
+		"@vercel/ncc": "^0.38.3"
 	},
 	"devDependencies": {
 		"@types/jest": "^29.5.14",
 		"@types/node": "^20.17.30",
 		"@types/vscode": "^1.99.0",
-		"@vercel/ncc": "^0.38.3",
-		"@vscode/vsce": "^3.3.2",
 		"eslint": "^9.13.0",
 		"jest": "^29.7.0",
 		"nodemon": "^3.1.9",

@@ -4,7 +4,7 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 
 ## [Unreleased]
 
-## [0.0.0] - 2025-04-20
+## [0.0.1] - 2025-04-20
 
 ### Added
 - Initial release of Chatherine via .vsix file download
@@ -26,3 +26,20 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 - Test suite with Jest and TypeScript support
 - ESLint configuration for code quality
 - Github actions and workflows set up to build, test and npm publish
+
+
+## [0.0.2] - 2025-04-20
+
+### Changed
+- README updates for better NPM support for links
+
+## [0.0.3] - 2025-04-20
+
+### tagged
+- latest
+
+## [0.0.4] - 2025-04-20
+
+### Changed
+- README homepage and issues links
+- Add Extension Publish Workflow

@@ -1,0 +1,32 @@
+name: Publish Extension
+on:
+  workflow_dispatch:
+    inputs:
+      REF:
+        description: 'The branch, tag or SHA to checkout for publishing'
+        required: true
+        default: 'main'
+      PUBLISH_COMMAND:
+        description: 'Command to publish the extension'
+        required: false
+        default: 'npm run publish:extension'
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ inputs.REF }}
+
+      - name: Build
+        uses: ./.github/actions/build
+
+      - name: Test
+        uses: ./.github/actions/test
+
+      - name: Publish extension @ ${{ inputs.ref }}
+        uses: ./.github/actions/publish_extension
+        with:
+          PUBLISH_COMMAND: ${{ inputs.PUBLISH_COMMAND }}
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
