@@ -5,7 +5,7 @@
 		"lib": [
 			"esnext"
 		],
-    "declaration": true,
+		"declaration": true,
 		"sourceMap": true,
 		"rootDir": "src",
 		"outDir": "dist",
@@ -14,11 +14,13 @@
 		"resolveJsonModule": true
 	},
 	"include": [
-		"src/**/*"
+		"src/**/*",
+		"src/chathy.ts",
+		"src/mocks/mocks.ts"
 	],
 	"exclude": [
 		"**/*.test.ts",
-		"__mocks__",
+		"__mocks__/vscode/vscode.ts",
 		"**/node_modules/**",
 		"init"
 	],
