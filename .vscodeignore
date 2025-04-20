@@ -1,4 +1,5 @@
 .github
+chathy/**
 .vscode/**
 .vscode-test/**
 **/node_modules/**
@@ -9,4 +10,3 @@ src/**
 
 **/*.ts
 **/*.map
-!dist/**/*

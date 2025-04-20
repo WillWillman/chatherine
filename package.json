@@ -1,8 +1,8 @@
 {
 	"name": "chatherine",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"icon": "participant-logo.png",
-	"publisher": "willman-codes",
+	"publisher": "willmancodes",
 	"displayName": "Chatherine: Your Copilot Flight Attendant",
 	"description": "An assistant for Copilot to help you become a better prompter.",
 	"engines": {
