@@ -1,0 +1,20 @@
+{
+  // 💡 Inputs are prompted on first server start, then stored securely by VS Code.
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "test-key",
+      "description": "Test API Key",
+      "password": true
+    }
+  ],
+  "servers": {
+    "project-mcp": {
+      "type": "stdio",
+      "command": "ts-node",
+      "args": [
+        "${workspaceFolder}/.vscode/mcp/mcp.ts",
+      ],
+    }
+  }
+}

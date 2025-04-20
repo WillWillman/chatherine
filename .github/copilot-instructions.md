@@ -12,6 +12,7 @@
 - Avoid unnecessary wrapping of functions in arrow functions.
 
 # Testing
+- validate using the `runUnitTests` MCP tool that is registered
 - Use `jest.restoreAllMocks` in `beforeEach` to reset mocks before each test.
 - Prefer `jest.spyOn` over `jest.mock` for mocking functions or methods.
 - Use `jest.replaceProperty` to replace object properties instead of creating mock objects.
