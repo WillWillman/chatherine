@@ -13,9 +13,13 @@ inputs:
     description: 'NPM token for authentication'
     required: true
   APPEND_TAG:
-    description: 'Tag to append to the version (such as "-pre-release")'
+    description: 'Tag to append to the version (such as "latest", "next", "pre-release")'
     required: false
-    default: 'latest'
+    default: 'pre-release'
+  ACCESS:
+    description: 'Access level for the package (public or default or private)'
+    required: true
+    default: 'public'
   REGISTRY_URL:
     description: 'The registry URL to publish to'
     required: false
@@ -34,6 +38,6 @@ runs:
     - name: Publish ${{ inputs.WORKING_DIRECTORY }} to npm
       shell: bash
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
-      run: ${{ inputs.PUBLISH_COMMAND }} --tag ${{ inputs.APPEND_TAG }}
+      run: ${{ inputs.PUBLISH_COMMAND }} --tag ${{ inputs.APPEND_TAG }} --access=${{ inputs.ACCESS }}
       env:
         NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}

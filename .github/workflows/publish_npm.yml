@@ -15,9 +15,13 @@ on:
         required: false
         default: 'npm publish'
       APPEND_TAG:
-        description: 'Tag to append to the version (such as "pre-release")'
+        description: 'Tag to append to the version (such as "latest", "next", "pre-release")'
         required: false
-        default: 'latest'
+        default: 'pre-release'
+      ACCESS:
+        description: 'Access level for the package (public or default or private)'
+        required: true
+        default: 'public'
       REGISTRY_URL:
         description: 'The registry URL to publish to'
         required: false

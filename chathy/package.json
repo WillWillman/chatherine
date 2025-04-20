@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "author": "willman.codes",
   "license": "MIT",
+	"private": false,
   "description": "Lightweight wrapper for vscode chat participant extension creation",
   "engines": {
     "node": "^20"
