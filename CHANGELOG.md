@@ -48,3 +48,8 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 
 ### Changed
 - Republish Extension after making Repo Open Source on github
+
+## [0.0.6] - 2025-04-20
+
+### Changed
+- Update Logo
