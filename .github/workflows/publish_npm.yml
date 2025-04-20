@@ -5,6 +5,7 @@ on:
       REF:
         description: 'The branch, tag or SHA to checkout for publishing'
         required: true
+        default: 'main'
       WORKING_DIRECTORY:
         description: 'The working directory to run the publish command from'
         required: true
@@ -14,9 +15,9 @@ on:
         required: false
         default: 'npm publish'
       APPEND_TAG:
-        description: 'Tag to append to the version (such as "-pre-release")'
+        description: 'Tag to append to the version (such as "pre-release")'
         required: false
-        default: '-latest'
+        default: 'latest'
       REGISTRY_URL:
         description: 'The registry URL to publish to'
         required: false
