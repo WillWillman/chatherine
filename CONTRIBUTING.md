@@ -50,6 +50,7 @@ Thank you for considering contributing to the Chatherine project! We welcome con
 
 ## Testing
 
+- Optionally start the projects [mcp server(s)](.vscode/mcp.json)
 - Keep with the style of the repo
 - Use the mocks provided and extend as needed
 - avoid `jest.Mock` and prefer `jest.spyOn`
