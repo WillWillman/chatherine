@@ -1,17 +1,26 @@
 name: Publish NPM
 on:
-  # push:
-  #   branches:
-  #     - main
   workflow_dispatch:
     inputs:
-      ref:
+      REF:
         description: 'The branch, tag or SHA to checkout for publishing'
         required: true
-      package:
-        description: 'The package to publish'
+      WORKING_DIRECTORY:
+        description: 'The working directory to run the publish command from'
         required: true
         default: 'chathy'
+      PUBLISH_COMMAND:
+        description: 'Command to publish the WORKING_DIRECTORY (use "npm publish --force" to upsert to the same version)'
+        required: false
+        default: 'npm publish'
+      APPEND_TAG:
+        description: 'Tag to append to the version (such as "-pre-release")'
+        required: false
+        default: '-latest'
+      REGISTRY_URL:
+        description: 'The registry URL to publish to'
+        required: false
+        default: 'https://registry.npmjs.org/'
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -19,13 +28,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: ${{ inputs.ref }}
+          ref: ${{ inputs.REF }}
 
-      - name: Build and Test
-        uses: ./.github/workflows/actions/build-and-test
+      - name: Build
+        uses: ./.github/actions/build
 
-      - name: Publish ${{ inputs.package }} @ ${{ inputs.ref }}
-        uses: ./.github/workflows/actions/publish
+      - name: Test
+        uses: ./.github/actions/test
+
+      - name: Publish ${{ inputs.WORKING_DIRECTORY }} @ ${{ inputs.ref }}
+        uses: ./.github/actions/publish_npm
         with:
-          node-version: 20
-          package: ${{ inputs.package }}
+          WORKING_DIRECTORY: ${{ inputs.WORKING_DIRECTORY }}
+          PUBLISH_COMMAND: ${{ inputs.PUBLISH_COMMAND }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          APPEND_TAG: ${{ inputs.APPEND_TAG }}
+          REGISTRY_URL: ${{ inputs.REGISTRY_URL }}

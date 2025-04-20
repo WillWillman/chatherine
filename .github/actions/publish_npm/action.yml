@@ -1,23 +1,42 @@
-name: 'Build and Test'
-description: 'Publishes a package to npm'
+name: 'Publish to NPM'
+description: 'Publishes a package to npm registry'
 inputs:
-  package:
-    description: 'The package to publish'
+  WORKING_DIRECTORY:
+    description: 'The WORKING_DIRECTORY to run publish from'
     required: true
     default: 'chathy'
-  publish-command:
+  PUBLISH_COMMAND:
     description: 'Command to publish the package'
     required: false
     default: 'npm publish'
   NPM_TOKEN:
     description: 'NPM token for authentication'
     required: true
+  VERSION:
+    description: 'Version to publish (if not specified, it will be read from package.json)'
+    required: false
+  APPEND_TAG:
+    description: 'Tag to append to the version (such as "-pre-release")'
+    required: false
+    default: '-latest'
+  REGISTRY_URL:
+    description: 'The registry URL to publish to'
+    required: false
+    default: 'https://registry.npmjs.org/'
 
 runs:
   using: 'composite'
   steps:
-    - name: Publish to npm
-      working-directory: src/packages/${{ inputs.package }}
-      run: ${{ inputs.publish-command }}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+        registry-url: ${{ inputs.REGISTRY_URL }}
+
+    - name: Publish ${{ inputs.WORKING_DIRECTORY }} to npm
+      shell: bash
+      working-directory: ${{ inputs.WORKING_DIRECTORY }}
+      run: ${{ inputs.PUBLISH_COMMAND }} --tag ${APPEND_TAG}
       env:
         NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}

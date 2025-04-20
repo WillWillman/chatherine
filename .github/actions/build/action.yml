@@ -23,9 +23,9 @@ runs:
         node-version: ${{ inputs.node-version }}
 
     - name: Install dependencies
-      run: ${{ inputs.install-command }}
       shell: bash
+      run: ${{ inputs.install-command }}
 
     - name: Compile
-      run: ${{ inputs.compile-command }}
       shell: bash
+      run: ${{ inputs.compile-command }}
