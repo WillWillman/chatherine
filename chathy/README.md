@@ -68,6 +68,11 @@ A collection of utilities for common operations:
 - [Chat Utils](./src/utils/chat/README.md) - Tools for handling chat interactions with language models
 - Editor Utils (Coming Soon) - Utilities for interacting with the VS Code editor
 
+## Model Context Protocol (MCP) Integration
+
+Chathy supports the Model Context Protocol (MCP) servers.
+- runUnitTests: Includes support for MCP-based testing via the `runUnitTests` tool
+
 ## CLI Commands
 
 ```bash

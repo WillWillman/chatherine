@@ -3,6 +3,7 @@
         "chatherine",
         "chathy",
         "filetree",
+        "modelcontextprotocol",
         "USERINPUT"
     ],
     "cSpell.ignorePaths": [
@@ -11,14 +12,15 @@
         "extension-bundle.js"
     ],
     "chatherine.documentation.exclude": [
-        "node_modules",
-        "dist",
-        "build",
-        "out",
-        "coverage",
-        "lib",
-        "bin",
-        ".vscode-test"
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/out/**",
+        "**/coverage/**",
+        "**/lib/**",
+        "**/bin/**",
+        "**/.vscode-test/**",
+        "**/init/**"
     ],
     "chatherine.documentation.include": [
         "**/package.json",
