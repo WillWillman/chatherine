@@ -9,18 +9,15 @@ A typescript framework to streamline building chat participants for VS Code.
   npx --package=@chatherine/chathy chathy init
   ```
 
-### Adding to an existing node project/extension
-  ```bash
-  npm install @chatherine/chathy
-  npx chathy init
-  ```
-
 ## Usage
 
 ```typescript
 // extension.ts
 import * as chathy from '@chatherine/chathy';
 import * as commands from './commands';
+
+type Activate = (extensionContext: chathy.ExtensionContext) => void;
+export const activate: Activate = (extensionContext) => chathy.activate(commands, commands.someCommandUsedForDefault.name)(extensionContext);
 
 // chathy.CommandContext
 type CommandContext = {
@@ -40,8 +37,6 @@ type ChatRequestHandler = (
 
 // chathy.Command
 type Command = (commandContext: CommandContext) => chathy.ChatRequestHandler;
-
-export const activate = chathy.activate(commands, commands.someCommandUsedForDefault.name);
 ```
 
 ## Features

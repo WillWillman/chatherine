@@ -1,6 +1,11 @@
 # ${USERINPUT_DISPLAY_NAME}
 
+${USERINPUT_DESCRIPTION}
+
 ## Features
+
+- 💬 Chat directly in the VS Code chat window
+- 📝 Search and summarize your project documentation
 
 ## Installation
 (Marketplace Coming Soon!)
@@ -45,12 +50,12 @@ Will merge down in this order (if defined):
 ## How to Use
 
 1. Open the VS Code chat window (look for the ${USERINPUT_NAME} participant)
-2. Type `/` to see available commands, or just start chatting
-3. Use one of the following commands:
+2. Type `/` to see available commands, or just start chatting with the default documentation command
+3. Use the following command:
 
 ### Available Commands
 
-- `/documentation`
+- `/documentation` (Default command)
   Search and summarize documentation (markdown and package.json files) in your workspace.
 
 For more details on each command, see [Commands README](src/commands/README.md).
@@ -60,6 +65,10 @@ For more details on each command, see [Commands README](src/commands/README.md).
 In the chat window, type:
 ```
 @${USERINPUT_NAME} /documentation How do I implement a new command?
+```
+Or simply:
+```
+@${USERINPUT_NAME} How do I implement a new command?
 ```
 
 ## Requirements
@@ -74,4 +83,4 @@ In the chat window, type:
 ## License
 [MIT License](LICENSE)
 
-Check out [chathy](chathy/README.md) api to build your own extension!
+Check out [chathy](https://github.com/WillWillman/chatherine/tree/main/chathy) API to build your own extension!

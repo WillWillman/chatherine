@@ -27,9 +27,6 @@ This command starts an interactive setup process that:
 ## Example Usage
 
 ```bash
-# make an empty directory where you want your extension to live
-mkdir -p my-extension && cd $_
-
 # Initialize a new chathy enabled extension & answer prompts (see above)
 npx chathy init
 
@@ -37,7 +34,7 @@ npx chathy init
 npm install
 
 # Compile + bundle the js and create the extension.vsix file
-npm compile
+npm run compile
 
 # Run jest tests
 npm run test

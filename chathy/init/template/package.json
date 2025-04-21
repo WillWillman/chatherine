@@ -16,25 +16,29 @@
 	"categories": [],
 	"main": "./extension.js",
 	"scripts": {
-		"bundle:js": "ncc build dist/src/extension.js --external vscode --minify --no-cache -o . && mv ./index.js ./extension.js",
-		"compile:js": "rm -rf ./dist && tsc -p ./ && npm run bundle:js && rm -rf ./dist",
-		"compile:vsix": "npx chathy compile:vsix",
+		"build:extension": "rm -rf ./dist && tsc -p ./ && ncc build dist/src/extension.js --external vscode --minify --no-cache -o . && mv ./index.js ./extension.js && rm -rf ./dist",
+		"compile:extension": "npx chathy compile:vsix",
 		"publish:extension": "npx chathy publish:extension",
 		"install:extension": "npx chathy install:extension",
 		"uninstall:extension": "npx chathy uninstall:extension ${USERINPUT_PUBLISHER}.${USERINPUT_NAME}",
 		"reinstall:extension": "npx chathy reinstall:extension",
-		"compile": "npm run compile:js && npm run compile:vsix",
-		"dev": "nodemon",
+		"vscode:prepublish:dev": "npm run build:extension",
+		"vscode:prepublish:production": "npm ci --omit=dev && npm run build:extension",
+		"vscode:prepublish": "npm run vscode:prepublish:${NODE_ENV:-dev}",
+		"dev": "npm install && npm run compile:extension && npm run install:extension",
+		"dev:watch": "nodemon",
 		"lint": "eslint",
 		"lint:fix": "eslint --fix",
 		"test": "jest --verbose",
+		"test:json": "jest --json 2>/dev/null",
 		"test:watch": "jest --verbose --watch"
 	},
 	"activationEvents": [
 		"onStartupFinished"
 	],
 	"dependencies": {
-		"@chatherine/chathy": "*"
+		"@chatherine/chathy": "*",
+		"@vercel/ncc": "^0.38.3"
 	},
 	"devDependencies": {
 		"@types/jest": "^29.5.14",
@@ -56,14 +60,14 @@
 						"type": "string"
 					},
 					"default": [
-						"node_modules",
-						"dist",
-						"build",
-						"out",
-						"coverage",
-						"lib",
-						"bin",
-						".vscode-test"
+						 "**/node_modules/**",
+						 "**/dist/**",
+						 "**/build/**",
+						 "**/out/**",
+						 "**/coverage/**",
+						 "**/lib/**",
+						 "**/bin/**",
+						 "**/.vscode-test/**"
 					],
 					"description": "Directories to ignore when using the /documentation prompt"
 				},

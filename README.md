@@ -53,12 +53,12 @@ Will merge down in this order (if defined):
 ## How to Use
 
 1. Open the VS Code chat window (look for the Chatherine participant)
-2. Type `/` to see available commands, or just start chatting
+2. Type `/` to see available commands, or just start chatting with the default noHistory command
 3. Use one of the following commands:
 
 ### Available Commands
 
-- `/noHistory`
+- `/noHistory` (Default command)
   Send a prompt to Copilot without using previous chat history.
 
 - `/refinePrompt`
