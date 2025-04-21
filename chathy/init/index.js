@@ -38,8 +38,20 @@ module.exports = async () => {
   const userInputPublisher = await askQuestion('Enter the publisher name: ');
   const userInputDisplayName = await askQuestion('Enter the display name: ');
   const userInputDescription = await askQuestion('Enter a description: ');
+  const userInputCreateDir = await askQuestion('Create a new directory for the extension? (y/n): ');
+  const userInputDirName = userInputCreateDir === 'y'
+    ? await askQuestion('Enter the name of the new directory: ')
+    : currentDir;
+  const userInputDirPath = path.resolve(currentDir, userInputDirName);
 
+  if (fs.existsSync(userInputDirPath)) {
+    console.error(`Directory ${userInputDirPath} already exists. Please choose a different name.`);
+    rl.close();
+    process.exit(1);
+  }
   rl.close();
+
+  fs.mkdirSync(userInputDirPath, { recursive: true });
 
   const placeholders = {
     USERINPUT_NAME: userInputName,
@@ -48,7 +60,7 @@ module.exports = async () => {
     USERINPUT_DESCRIPTION: userInputDescription,
   };
 
-  copyAndReplacePlaceholders(templateDir, currentDir, placeholders);
+  copyAndReplacePlaceholders(templateDir, userInputDirPath, placeholders);
 
   console.log('Initialization complete!');
   process.exit(0);
