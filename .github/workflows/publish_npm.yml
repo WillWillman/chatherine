@@ -49,7 +49,6 @@ jobs:
         with:
           TYPE: ${{ inputs.SEMVER }}
           WORKING_DIRECTORY: ${{ inputs.WORKING_DIRECTORY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish ${{ inputs.WORKING_DIRECTORY }} @ ${{ inputs.ref }}
         uses: ./.github/actions/publish_npm

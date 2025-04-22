@@ -32,7 +32,6 @@ jobs:
         uses: ./.github/actions/version_bump
         with:
           TYPE: ${{ inputs.SEMVER }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish extension @ ${{ inputs.ref }}
         uses: ./.github/actions/publish_extension
