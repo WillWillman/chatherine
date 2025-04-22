@@ -101,3 +101,11 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 
 ### Changed
 - use tag in changelog
+
+## [v0.0.14-chathy] - 2025-04-22
+
+### Changed
+- update template command to not conflict with chatherine command
+- Bump version to v0.0.14-extension
+- use tag in changelog
+- Bump version to v0.0.13-extension
