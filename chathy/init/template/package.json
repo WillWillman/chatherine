@@ -37,7 +37,7 @@
 		"onStartupFinished"
 	],
 	"dependencies": {
-		"@chatherine/chathy": "*",
+		"@chatherine/chathy": "latest",
 		"@vercel/ncc": "^0.38.3"
 	},
 	"devDependencies": {
