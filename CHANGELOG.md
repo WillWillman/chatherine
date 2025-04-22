@@ -64,3 +64,9 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 ### Changed
 - update readme with --package=@chatherine/chathy
 - support dist and local use of init cli
+
+## [0.0.12] - 2025-04-22
+
+### Changed
+- debug changelog (#4)
+
