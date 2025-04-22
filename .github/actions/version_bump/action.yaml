@@ -36,6 +36,13 @@ runs:
         VERSION="$(npm pkg get version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -1)"
         TAG="v${VERSION}-${SUBTAG}"
 
+        echo "TAG=$TAG" >> $GITHUB_ENV
+        echo "SUBTAG=$SUBTAG" >> $GITHUB_ENV
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+    - name: Update CHANGELOG
+      shell: bash
+      run: |
         LAST_TAG="$(git tag --list "*-${SUBTAG}" --sort=-creatordate | head -n1)";
         COMMITS="$(git log "${LAST_TAG}..HEAD" --pretty=format:'- %s')";
         if [ -n "$COMMITS" ]; then
@@ -49,14 +56,13 @@ runs:
           } >> CHANGELOG.md;
         fi
 
-        git tag -a "$TAG" -m "Version bump $TAG"
-        git add .
-        git diff --cached --quiet || git commit -m "Bump version to ${TAG}"
-
     - name: Push changes
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
       run: |
+        git tag -a "$TAG" -m "Version bump $TAG"
+        git add .
+        git diff --cached --quiet || git commit -m "Bump version to ${TAG}"
         git push origin HEAD
         git push origin --tags
