@@ -56,11 +56,10 @@ runs:
 
         cat >> CHANGELOG.md << EOF
 
-        ## [${VERSION}] - ${DATE}
+        ## [${TAG}] - ${DATE}
 
         ### Changed
         ${COMMITS}
-
         EOF
 
     - name: Push changes

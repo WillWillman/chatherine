@@ -86,16 +86,13 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 - commit changelog.md
 - Bump version to v0.0.11-extension
 
-## [0.0.13] - 2025-04-22
+## [0.0.13-chathy] - 2025-04-22
 
 ### Changed
 - changelog enhancement
-- Bump version to v0.0.12-extension
 
-
-## [0.0.13] - 2025-04-22
+## [0.0.13-extension] - 2025-04-22
 
 ### Changed
 - Bump version to v0.0.13-chathy
 - changelog enhancement
-
