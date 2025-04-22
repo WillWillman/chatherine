@@ -10,6 +10,9 @@ on:
         description: 'The working directory to run the publish command from'
         required: true
         default: 'chathy'
+      SEMVER:
+        description: 'patch, minor, major'
+        default: 'patch'
       PUBLISH_COMMAND:
         description: 'Command to publish the WORKING_DIRECTORY (use "npm publish --force" to upsert to the same version)'
         required: false
@@ -40,7 +43,6 @@ jobs:
 
       - name: Test
         uses: ./.github/actions/test
-
 
       - name: Version Bump Package
         uses: ./.github/actions/version_bump

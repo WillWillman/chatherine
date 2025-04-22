@@ -50,7 +50,7 @@ runs:
         fi
 
         git tag -a "$TAG" -m "Version bump $TAG"
-        git add package.json package-lock.json
+        git add package.json package-lock.json CHANGELOG.md
         git diff --cached --quiet || git commit -m "Bump version to ${TAG}"
 
     - name: Push changes
