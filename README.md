@@ -10,7 +10,6 @@ Chatherine is a chat assistant for Visual Studio Code that helps you get more ou
 - 🧹 Run stateless (no history) Copilot requests
 
 ## Installation
-(Marketplace Coming Soon!)
 1. Open VS Code
 2. Go to Extensions (Ctrl+Shift+X / Cmd+Shift+X)
 3. Search for "Chatherine"

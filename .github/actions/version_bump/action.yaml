@@ -1,0 +1,62 @@
+name: Version Bump Package
+description: Version bumps a package, adds git commit, adds git tag, and pushes to remote
+inputs:
+  TYPE:
+    description: patch, minor, major
+    default: patch
+  WORKING_DIRECTORY:
+    description: working-directory to run publish from
+    required: false
+  GITHUB_TOKEN:
+    description: GITHUB_TOKEN used for pushing changes
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Set Up Git
+      shell: bash
+      run: |
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+    - name: Bump version
+      shell: bash
+      working-directory: ${{ inputs.WORKING_DIRECTORY }}
+      run: |
+        npm version ${{ inputs.TYPE }} --no-git-tag-version
+
+    - name: Create Git Tag For Version
+      shell: bash
+      working-directory: ${{ inputs.WORKING_DIRECTORY }}
+      env:
+        INPUT_WORKING_DIRECTORY: ${{ inputs.WORKING_DIRECTORY }}
+      run: |
+        SUBTAG="${INPUT_WORKING_DIRECTORY:-extension}"
+        VERSION="$(npm pkg get version | tr -d '\"')"
+        TAG="v${VERSION}-${SUBTAG}"
+
+        LAST_TAG="$(git tag --list "*-${SUBTAG}" --sort=-creatordate | head -n1)";
+        COMMITS="$(git log "${LAST_TAG}..HEAD" --pretty=format:'- %s')";
+        if [ -n "$COMMITS" ]; then
+          {
+            echo '';
+            echo "## [${VERSION}] - $(date +%Y-%m-%d)";
+            echo '';
+            echo '### Changed';
+            echo "$COMMITS";
+            echo '';
+          } >> CHANGELOG.md;
+        fi
+
+        git tag -a "$TAG" -m "Version bump $TAG"
+        git add package.json package-lock.json
+        git diff --cached --quiet || git commit -m "Bump version to ${TAG}"
+
+    - name: Push changes
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+      run: |
+        git push origin HEAD
+        git push origin --tags
