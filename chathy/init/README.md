@@ -34,13 +34,13 @@ npx chathy init
 npm install
 
 # Compile + bundle the js and create the extension.vsix file
-npm run compile
+npm run dev
 
 # Run jest tests
 npm run test
 
 # Compiles and Installs Extension using nodemon to listen for changes
-npm run dev
+npm run dev:watch
 
 # Use the command pallet "Developer: Reload Window"
 ```

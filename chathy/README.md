@@ -2,15 +2,18 @@
 
 A typescript framework to streamline building chat participants for VS Code.
 
-## Installation
+## Setup
+### Initializing a new Chat Participant (See [init](/chathy/init/README.md))
+```bash
+npx --package=@chatherine/chathy chathy init
+```
 
-### Brand New Extension (See [init](/chathy/init/README.md))
-  ```bash
-  npx --package=@chatherine/chathy chathy init
-  ```
+### Installing into an existing package
+```bash
+npm install @chatherine/chathy
+```
 
 ## Usage
-
 ```typescript
 // extension.ts
 import * as chathy from '@chatherine/chathy';
@@ -18,7 +21,10 @@ import * as commands from './commands';
 
 type Activate = (extensionContext: chathy.ExtensionContext) => void;
 export const activate: Activate = (extensionContext) => chathy.activate(commands, commands.someCommandUsedForDefault.name)(extensionContext);
+```
 
+### Important Interfaces
+```typescript
 // chathy.CommandContext
 type CommandContext = {
   extensionContext: chathy.ExtensionContext;
@@ -39,12 +45,6 @@ type ChatRequestHandler = (
 type Command = (commandContext: CommandContext) => chathy.ChatRequestHandler;
 ```
 
-## Features
-
-- Follow functional programming principles
-- Provide a consistent API pattern with curried functions
-- Can be used independently or combined for complete workflows
-
 ## Core Functionality
 
 ### [Activate](/chathy/src/activate/README.md)
@@ -56,24 +56,20 @@ Creates a chat participant for VS Code with configurable name, icon, and command
 ### [Register Command](/chathy/src/registerCommand/README.md)
 Registers commands with VS Code's command system, allowing integration of custom commands with the extension. Provides a consistent API for command registration and execution.
 
-## Utilities
-
 ### [Utils](/chathy/src/utils/README.md)
-A collection of utilities for common operations:
+A collection of utilities for command developement:
 
 - [Chat Utils](/chathy/src/utils/chat/README.md) - Tools for handling chat interactions with language models
 - Editor Utils (Coming Soon) - Utilities for interacting with the VS Code editor
-
-## Model Context Protocol (MCP) Integration
-
-Chathy supports the Model Context Protocol (MCP) servers.
-- runUnitTests: Includes support for MCP-based testing via the `runUnitTests` tool
 
 ## CLI Commands
 
 ```bash
 # initialize a fresh chat participant using the @chatherine/chathy package
 npx chathy init
+
+# (COMING SOON) initialize a new MCP based tool
+# npx chathy init-mcp-tool
 
 # Compile extension to vsix file
 npx chathy compile:vsix
@@ -91,6 +87,11 @@ npx chathy uninstall:extension
 npx chathy reinstall:extension
 ```
 
+## Model Context Protocol (MCP) Integration
+Example MCP used internally for development: [runUnitTests](/.vscode/mcp/README.md)
+
 ## Mocks
 
-Chathy exposes mocks used to assist in testing, currently these are available at chathy.mocks but are likely to change so use at your own peril while this note exists here.
+Chathy exposes mocks used to assist in testing `chathy.mocks` (Dog fed into chatherine extension)
+
+Note: May change implementation so use at your own peril while this note exists!

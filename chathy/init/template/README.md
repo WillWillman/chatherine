@@ -7,6 +7,13 @@ ${USERINPUT_DESCRIPTION}
 - 💬 Chat directly in the VS Code chat window
 - 📝 Search and summarize your project documentation
 
+## Requirements
+
+- Visual Studio Code v1.99.0 or higher
+- GitHub Copilot Chat Extension
+- GitHub Copilot LLM Enabled
+- Internet connection for AI features
+
 ## Installation
 (Marketplace Coming Soon!)
 1. Open VS Code
@@ -19,24 +26,51 @@ Or download the [extension file](extension.vsix) and install manually:
 code --install-extension path/to/extension.vsix --force
 ```
 
-### Documentation Includes/Excludes
-```json
-  "${USERINPUT_NAME}.documentation.exclude": [
-      "node_modules",
-      "dist",
-      "build",
-      "out",
-      "coverage",
-      "lib",
-      "bin",
-      ".vscode-test"
-  ],
-  "${USERINPUT_NAME}.documentation.include": [
-      "**/package.json",
-      "**/*.md"
-  ]
+## How to Use
+
+### Accessing the participant in Copilot Chat window
+1. Install extension
+2. Open the VS Code chat window (look for the ${USERINPUT_NAME} participant)
+3. Type `/` to see available commands, or just start chatting with the default command
+4. First time will ask for permission to send request to Copilot
+5. Use one of the following commands:
+
+### Available Commands
+For more details on each command, see [Commands README](src/commands/README.md).
+
+- `/documentation` (Default command)
+  Search and summarize documentation (markdown and package.json files) in your workspace.
+
+## Example Usage
+
 ```
-Will merge down in this order (if defined):
+@${USERINPUT_NAME} /documentation How do I implement a new command?
+```
+Or using the default:
+```
+@${USERINPUT_NAME} How do I implement a new command?
+```
+
+
+### Documentation Command Includes/Excludes
+```json
+"${USERINPUT_NAME}.documentation.exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/out/**",
+    "**/coverage/**",
+    "**/lib/**",
+    "**/bin/**",
+    "**/.vscode-test/**",
+    "**/init/**"
+],
+"${USERINPUT_NAME}.documentation.include": [
+    "**/package.json",
+    "**/*.md"
+]
+```
+#### Will merge down in this order (if defined):
 - defaultValues (above)
 - globalValue
 - workspaceValue
@@ -45,36 +79,6 @@ Will merge down in this order (if defined):
 - globalLanguageValue
 - workspaceLanguageValue
 - workspaceFolderLanguageValue
-
-
-## How to Use
-
-1. Open the VS Code chat window (look for the ${USERINPUT_NAME} participant)
-2. Type `/` to see available commands, or just start chatting with the default documentation command
-3. Use the following command:
-
-### Available Commands
-
-- `/documentation` (Default command)
-  Search and summarize documentation (markdown and package.json files) in your workspace.
-
-For more details on each command, see [Commands README](src/commands/README.md).
-
-## Example Usage
-
-In the chat window, type:
-```
-@${USERINPUT_NAME} /documentation How do I implement a new command?
-```
-Or simply:
-```
-@${USERINPUT_NAME} How do I implement a new command?
-```
-
-## Requirements
-
-- Visual Studio Code v1.99.0 or higher
-- Internet connection for AI features
 
 ## Support
 
