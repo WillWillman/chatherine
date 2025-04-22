@@ -114,3 +114,8 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 
 ### Changed
 - update template package lock
+
+## [v0.0.16-chathy] - 2025-04-22
+
+### Changed
+- update template package lock
