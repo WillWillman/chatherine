@@ -45,10 +45,10 @@ runs:
         DATE=$(date +%Y-%m-%d)
 
         if [ -z "$LAST_TAG" ]; then
-          COMMITS="$(git log --pretty=format:'- %s' --no-merges)"
+          COMMITS="$(git log --pretty=format:'- %s' --no-merges -- $INPUT_WORKING_DIRECTORY)"
           COMMITS="${COMMITS:-First release}"
         else
-          COMMITS="$(git log "${LAST_TAG}..HEAD" --pretty=format:'- %s' --no-merges)"
+          COMMITS="$(git log "${LAST_TAG}..HEAD" --pretty=format:'- %s' --no-merges -- $INPUT_WORKING_DIRECTORY)"
           COMMITS="${COMMITS:-No new commits since ${LAST_TAG}}"
         fi
 
