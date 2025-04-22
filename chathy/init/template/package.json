@@ -54,7 +54,7 @@
 		"configuration": {
 			"title": "${USERINPUT_NAME}",
 			"properties": {
-				"${USERINPUT_NAME}.documentation.exclude": {
+				"${USERINPUT_NAME}.docs.exclude": {
 					"type": "array",
 					"items": {
 						"type": "string"
@@ -69,9 +69,9 @@
 						 "**/bin/**",
 						 "**/.vscode-test/**"
 					],
-					"description": "Directories to ignore when using the /documentation prompt"
+					"description": "Directories to ignore when using the /docs prompt"
 				},
-				"${USERINPUT_NAME}.documentation.include": {
+				"${USERINPUT_NAME}.docs.include": {
 					"type": "array",
 					"items": {
 						"type": "string"
@@ -80,7 +80,7 @@
 						"**/package.json",
 						"**/*.md"
 					],
-					"description": "Files to include when using the /documentation prompt"
+					"description": "Files to include when using the /docs prompt"
 				}
 			}
 		},
@@ -93,8 +93,8 @@
 				"isSticky": true,
 				"commands": [
 					{
-						"name": "documentation",
-						"description": "Dive into your documentation!"
+						"name": "docs",
+						"description": "Dive into your docs!"
 					}
 				]
 			}

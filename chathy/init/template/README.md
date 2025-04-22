@@ -5,7 +5,7 @@ ${USERINPUT_DESCRIPTION}
 ## Features
 
 - 💬 Chat directly in the VS Code chat window
-- 📝 Search and summarize your project documentation
+- 📝 Search and summarize your project docs
 
 ## Requirements
 
@@ -38,13 +38,13 @@ code --install-extension path/to/extension.vsix --force
 ### Available Commands
 For more details on each command, see [Commands README](src/commands/README.md).
 
-- `/documentation` (Default command)
-  Search and summarize documentation (markdown and package.json files) in your workspace.
+- `/docs` (Default command)
+  Search and summarize docs (markdown and package.json files) in your workspace.
 
 ## Example Usage
 
 ```
-@${USERINPUT_NAME} /documentation How do I implement a new command?
+@${USERINPUT_NAME} /docs How do I implement a new command?
 ```
 Or using the default:
 ```
@@ -52,9 +52,9 @@ Or using the default:
 ```
 
 
-### Documentation Command Includes/Excludes
+### Docs Command Includes/Excludes
 ```json
-"${USERINPUT_NAME}.documentation.exclude": [
+"${USERINPUT_NAME}.docs.exclude": [
     "**/node_modules/**",
     "**/dist/**",
     "**/build/**",
@@ -65,7 +65,7 @@ Or using the default:
     "**/.vscode-test/**",
     "**/init/**"
 ],
-"${USERINPUT_NAME}.documentation.include": [
+"${USERINPUT_NAME}.docs.include": [
     "**/package.json",
     "**/*.md"
 ]

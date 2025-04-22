@@ -8,7 +8,7 @@ describe('activate', () => {
 
     activate(chathy.mocks.extensionContext);
 
-    expect(chathy.activate).toHaveBeenCalledWith(commands, 'documentation');
+    expect(chathy.activate).toHaveBeenCalledWith(commands, 'docs');
     expect(chathy.activate({ cmd: () => () => ({}) }, 'cmd')).toHaveBeenCalledWith(chathy.mocks.extensionContext);
   });
 });

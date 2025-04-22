@@ -1,1 +1,0 @@
-export { documentation } from './documentation';

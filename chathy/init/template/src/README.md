@@ -13,9 +13,9 @@ The extension is activated through the `activate` function in this file, which:
 [Commands README](/src/commands/README.md).
 
 ### Key Commands
-- **Documentation**: Assists in searching and analyzing documentation within a workspace.
+- **Docs**: Assists in searching and analyzing docs within a workspace.
   ```json
-    "${USERINPUT_NAME}.documentation.exclude": [
+    "${USERINPUT_NAME}.docs.exclude": [
         "node_modules",
         "dist",
         "build",
@@ -25,7 +25,7 @@ The extension is activated through the `activate` function in this file, which:
         "bin",
         ".vscode-test"
     ],
-    "${USERINPUT_NAME}.documentation.include": [
+    "${USERINPUT_NAME}.docs.include": [
         "**/package.json",
         "**/*.md"
     ],

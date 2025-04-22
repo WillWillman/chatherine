@@ -4,15 +4,15 @@ This directory contains the commands available in the chat participant extension
 
 ## Available Commands
 
-### [Documentation](./documentation/README.md)
-Assists users in searching through documentation within a workspace. It searches markdown and `package.json` files, answers user questions, summarizes relevant documentation, and identifies outdated or conflicting documentation if applicable.
+### [Docs](./docs/README.md)
+Assists users in searching through docs within a workspace. It searches markdown and `package.json` files, answers user questions, summarizes relevant docs, and identifies outdated or conflicting docs if applicable.
 
-#### Configure Documentation Structure
+#### Configure Docs Structure
 In [workspace settings](.vscode/settings.json)
 
 Defaults:
   ```json
-    "${USERINPUT_NAME}.documentation.exclude": [
+    "${USERINPUT_NAME}.docs.exclude": [
         "node_modules",
         "dist",
         "build",
@@ -22,7 +22,7 @@ Defaults:
         "bin",
         ".vscode-test"
     ],
-    "${USERINPUT_NAME}.documentation.include": [
+    "${USERINPUT_NAME}.docs.include": [
         "**/package.json",
         "**/*.md"
     ],

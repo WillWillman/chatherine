@@ -1,5 +1,5 @@
 {
-    "${USERINPUT_NAME}.documentation.exclude": [
+    "${USERINPUT_NAME}.docs.exclude": [
         "node_modules",
         "dist",
         "build",
@@ -9,7 +9,7 @@
         "bin",
         ".vscode-test"
     ],
-    "${USERINPUT_NAME}.documentation.include": [
+    "${USERINPUT_NAME}.docs.include": [
         "**/package.json",
         "**/*.md"
     ],
