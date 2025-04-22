@@ -1,9 +1,9 @@
 {
   "name": "@chatherine/chathy",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "author": "willman.codes",
   "license": "MIT",
-	"private": false,
+  "private": false,
   "description": "Lightweight wrapper for vscode chat participant extension creation",
   "engines": {
     "node": "^20"
@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/WillWillman/chatherine",
   "dependencies": {
-		"@modelcontextprotocol/sdk": "^1.10.1",
+    "@modelcontextprotocol/sdk": "^1.10.1",
     "@types/vscode": "^1.99.0",
     "@vscode/vsce": "^3.3.2",
     "typescript": "^5.8.3"
