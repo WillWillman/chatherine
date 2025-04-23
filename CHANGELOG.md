@@ -134,3 +134,8 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 
 ### Changed
 - support same directory init
+
+## [v0.0.20-chathy] - 2025-04-23
+
+### Changed
+- Minor refactoring for code readability
