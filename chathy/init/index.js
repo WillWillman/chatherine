@@ -31,7 +31,6 @@ const copyAndReplacePlaceholders = (
     });
 
 module.exports = async () => {
-  const currentDir = process.cwd();
   const templateDir = path.resolve(__dirname, 'template');
 
   const userInputName = await askQuestion('Enter the name of your extension: ');
@@ -39,19 +38,19 @@ module.exports = async () => {
   const userInputDisplayName = await askQuestion('Enter the display name: ');
   const userInputDescription = await askQuestion('Enter a description: ');
   const userInputCreateDir = await askQuestion('Create a new directory for the extension? (y/n): ');
-  const userInputDirName = userInputCreateDir === 'y'
-    ? await askQuestion('Enter the name of the new directory: ')
-    : currentDir;
-  const userInputDirPath = path.resolve(currentDir, userInputDirName);
+  const userInputDir = userInputCreateDir === 'y'
+    ? path.resolve(process.cwd(), await askQuestion('Enter the name of the new directory: '))
+    : process.cwd();
 
-  if (fs.existsSync(userInputDirPath)) {
-    console.error(`Directory ${userInputDirPath} already exists. Please choose a different name.`);
-    rl.close();
-    process.exit(1);
-  }
   rl.close();
 
-  fs.mkdirSync(userInputDirPath, { recursive: true });
+  if (fs.existsSync(userInputDir) || fs.readdirSync(userInputDir).length > 0) {
+    console.error(`Directory ${userInputDir} already exists and is not empty. Please choose a different directory.`);
+    process.exit(1);
+  }
+  if (userInputCreateDir === 'y' && !fs.existsSync(userInputDir)) {
+    fs.mkdirSync(userInputDir, { recursive: true });
+  }
 
   const placeholders = {
     USERINPUT_NAME: userInputName,
@@ -60,7 +59,22 @@ module.exports = async () => {
     USERINPUT_DESCRIPTION: userInputDescription,
   };
 
-  copyAndReplacePlaceholders(templateDir, userInputDirPath, placeholders);
+  copyAndReplacePlaceholders(templateDir, userInputDir, placeholders);
+
+  const child_process = require('child_process');
+  try {
+    child_process.execSync('npm install', {
+      cwd: userInputDir,
+      stdio: 'inherit',
+    });
+
+    child_process.execSync('npm run dev', {
+      cwd: userInputDir,
+      stdio: 'inherit',
+    });
+  } catch (error) {
+    console.error(`Error executing command`, error.message);
+  }
 
   console.log('Initialization complete!');
   process.exit(0);

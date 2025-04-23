@@ -15,40 +15,41 @@ This command starts an interactive setup process that:
    - Publisher name (username or organization)
    - Display name (shown in the VS Code UI)
    - Description (explains your extension's purpose)
+   - Optionally can add a directory
+      - If not it will put all the files in the directory where you run the script
 
 2. Creates a complete, ready-to-use VS Code extension project with:
    - Extension configuration (`package.json`)
    - VS Code specific settings
-   - Documentation command implementation
+   - /docs command implementation
+      - Note: if you already have a command named /docs registered by another extension you will need to rename the command in this extension
    - Testing setup with Jest
    - Build configuration
    - Development workflow with nodemon
 
+3. Installs dependancies and Installs the extension.vsix
+
 ## Example Usage
+Note: After each install you must use the VS Code command pallet and choose
+"Devleoper: Reload Window"
+and/or
+"Devleoper: Restart Extension Host"
 
 ```bash
-# Initialize a new chathy enabled extension & answer prompts (see above)
-npx chathy init
-
-# install dependencies
-npm install
-
-# Compile + bundle the js and create the extension.vsix file
-npm run dev
+# Initialize a new chathy enabled extension by answering prompts
+npx --package=@chatherine/chathy chathy init
 
 # Run jest tests
-npm run test
+npm prefix=[extension-directory-initialized] run test
 
 # Compiles and Installs Extension using nodemon to listen for changes
-npm run dev:watch
-
-# Use the command pallet "Developer: Reload Window"
+npm prefix=[extension-directory-initialized] dev:watch
 ```
 
 ## Using the chat participant
 Open the VS Code chat window type
 ```
-@[extension-name] /documentation How do I implement a new command?
+@[extension-name] /docs How do I implement a new command?
 ```
 
 ## Project Structure
@@ -64,7 +65,7 @@ The generated project follows modern JavaScript/TypeScript best practices:
 
 The template includes a fully functional chat participant with:
 
-- `/documentation` command for searching workspace documentation
+- `/docs` command for searching workspace docs
 - Configurable file includes/excludes
 - Integration with VS Code chat interface
 
