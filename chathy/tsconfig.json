@@ -2,9 +2,7 @@
 	"compilerOptions": {
 		"module": "NodeNext",
 		"target": "ES2023",
-		"lib": [
-			"esnext"
-		],
+    "lib": ["ES2024", "DOM"],
 		"declaration": true,
 		"sourceMap": true,
 		"rootDir": "src",
