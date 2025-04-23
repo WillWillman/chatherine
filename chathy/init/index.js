@@ -44,7 +44,7 @@ module.exports = async () => {
 
   rl.close();
 
-  if (fs.existsSync(userInputDir) || fs.readdirSync(userInputDir).length > 0) {
+  if (fs.existsSync(userInputDir) && fs.readdirSync(userInputDir).length > 0) {
     console.error(`Directory ${userInputDir} already exists and is not empty. Please choose a different directory.`);
     process.exit(1);
   }
