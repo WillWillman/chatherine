@@ -8,13 +8,13 @@ on:
         description: 'The branch, tag or SHA to checkout for publishing'
         required: true
         default: 'main'
-      PUBLISH_COMMAND:
-        description: 'Command to publish the extension'
-        required: false
-        default: 'npm run publish:extension'
       SEMVER:
-        description: 'patch, minor, major'
+        type: choice
         default: 'patch'
+        options:
+          - patch
+          - minor
+          - major
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -39,5 +39,4 @@ jobs:
       - name: Publish extension @ ${{ inputs.ref }}
         uses: ./.github/actions/publish_extension
         with:
-          PUBLISH_COMMAND: ${{ inputs.PUBLISH_COMMAND }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}

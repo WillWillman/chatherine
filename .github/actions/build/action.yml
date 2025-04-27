@@ -1,18 +1,5 @@
 name: 'Build'
 description: 'Sets up Node.js, installs dependencies, compiles'
-inputs:
-  node-version:
-    description: 'Node version to use'
-    required: true
-    default: '20'
-  install-command:
-    description: 'Command to install dependencies'
-    required: false
-    default: 'npm install'
-  compile-command:
-    description: 'Command to compile the code'
-    required: false
-    default: 'npm run compile:extension'
 
 runs:
   using: 'composite'
@@ -20,12 +7,12 @@ runs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ inputs.node-version }}
+        node-version: 20
 
     - name: Install dependencies
       shell: bash
-      run: ${{ inputs.install-command }}
+      run: npm install
 
     - name: Compile
       shell: bash
-      run: ${{ inputs.compile-command }}
+      run: npm run compile:extension

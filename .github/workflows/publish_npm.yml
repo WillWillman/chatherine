@@ -4,33 +4,37 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
+      ACCESS:
+        type: choice
+        required: true
+        default: 'pre-release'
+        options:
+          - default
+          - private
+          - public
+      APPEND_TAG:
+        type: choice
+        required: true
+        default: 'pre-release'
+        options:
+          - latest
+          - next
+          - pre-release
       REF:
         description: 'The branch, tag or SHA to checkout for publishing'
         required: true
         default: 'main'
+      SEMVER:
+        type: choice
+        default: 'patch'
+        options:
+          - patch
+          - minor
+          - major
       WORKING_DIRECTORY:
         description: 'The working directory to run the publish command from'
         required: true
         default: 'chathy'
-      SEMVER:
-        description: 'patch, minor, major'
-        default: 'patch'
-      PUBLISH_COMMAND:
-        description: 'Command to publish the WORKING_DIRECTORY (use "npm publish --force" to upsert to the same version)'
-        required: false
-        default: 'npm publish'
-      APPEND_TAG:
-        description: 'Tag to append to the version (such as "latest", "next", "pre-release")'
-        required: false
-        default: 'pre-release'
-      ACCESS:
-        description: 'Access level for the package (public or default or private)'
-        required: true
-        default: 'public'
-      REGISTRY_URL:
-        description: 'The registry URL to publish to'
-        required: false
-        default: 'https://registry.npmjs.org/'
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -56,8 +60,7 @@ jobs:
       - name: Publish ${{ inputs.WORKING_DIRECTORY }} @ ${{ inputs.ref }}
         uses: ./.github/actions/publish_npm
         with:
-          WORKING_DIRECTORY: ${{ inputs.WORKING_DIRECTORY }}
-          PUBLISH_COMMAND: ${{ inputs.PUBLISH_COMMAND }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          ACCESS: ${{ inputs.ACCESS }}
           APPEND_TAG: ${{ inputs.APPEND_TAG }}
-          REGISTRY_URL: ${{ inputs.REGISTRY_URL }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          WORKING_DIRECTORY: ${{ inputs.WORKING_DIRECTORY }}
