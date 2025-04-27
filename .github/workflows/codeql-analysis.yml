@@ -1,0 +1,39 @@
+name: "CodeQL"
+permissions:
+  security-events: write
+  packages: read
+on:
+  push:
+  schedule:
+    - cron: '00 22 * * 4' # 10pm UTC === 2pm PST/3pm PDT === 5pm ET/6pm EDT
+
+jobs:
+  analyze:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - language: actions
+          build: false
+        - language: javascript-typescript
+          build: true
+
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Build
+      if: ${{ matrix.build }}
+      uses: ./.github/actions/build
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+        queries: security-and-quality,security-experimental
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
