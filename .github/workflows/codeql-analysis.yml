@@ -15,8 +15,10 @@ jobs:
         include:
         - language: actions
           build: false
+          install: false
         - language: javascript-typescript
-          build: true
+          build: false
+          install: true
 
     name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
@@ -24,6 +26,10 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    - name: install
+      if: ${{ matrix.install && !matrix.build }}
+      run: npm ci --workspaces --if-present
 
     - name: Build
       if: ${{ matrix.build }}
