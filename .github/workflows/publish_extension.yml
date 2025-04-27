@@ -34,7 +34,7 @@ jobs:
       - name: Version Bump Package
         uses: ./.github/actions/version_bump
         with:
-          TYPE: ${{ inputs.SEMVER }}
+          SEMVER: ${{ inputs.SEMVER }}
 
       - name: Publish extension @ ${{ inputs.ref }}
         uses: ./.github/actions/publish_extension
