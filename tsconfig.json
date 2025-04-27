@@ -12,7 +12,7 @@
 	},
 	"include": [
 		"src/**/*",
-		".vscode/mcp/**/*"
+		"mcp/**/*"
 	],
 	"exclude": [
 		"**/*.test.ts",
