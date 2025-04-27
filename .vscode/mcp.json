@@ -7,7 +7,7 @@
       "type": "stdio",
       "command": "ts-node",
       "args": [
-        "${workspaceFolder}/.vscode/mcp/mcp.ts",
+        "${workspaceFolder}/mcp/start.ts",
       ],
     }
   }
