@@ -1,5 +1,7 @@
 name: Main
 on: push
+permissions:
+  contents: read
 jobs:
   BuildAndTest:
     runs-on: ubuntu-latest

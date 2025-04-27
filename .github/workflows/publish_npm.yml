@@ -1,4 +1,6 @@
 name: Publish NPM
+permissions:
+  contents: write
 on:
   workflow_dispatch:
     inputs:
