@@ -139,3 +139,10 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 
 ### Changed
 - Minor refactoring for code readability
+
+## [v0.0.21-chathy] - 2025-04-27
+
+### Changed
+- add code ql action (#7)
+- move mcp logic out of .vscode (#6)
+- add permissions to workflows (#5)
