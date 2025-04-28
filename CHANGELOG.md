@@ -176,3 +176,41 @@ No new commits since v0.0.25-chathy
 
 ### Changed
 No new commits since v0.0.26-chathy
+
+## [v0.0.15-extension] - 2025-04-28
+
+### Changed
+- Bump version to v0.0.27-chathy
+- Bump version to v0.0.26-chathy
+- Refactor tag removal logic to use consistent package name retrieval method
+- Bump version to v0.0.25-chathy
+- Refactor tag removal steps to use consistent method for retrieving package name
+- Bump version to v0.0.24-chathy
+- Add steps to remove pre-release and next tags after publishing to NPM
+- Bump version to v0.0.23-chathy
+- Refactor NPM publish action: streamline input descriptions and update environment variable usage
+- Bump version to v0.0.22-chathy
+- SEMVER instead of env.SEMVER
+- update readme for codeql
+- Add workflow_dispatch trigger to CodeQL analysis workflow
+- address codeql actions type findings (#9)
+- Potential fix for code scanning alert no. 11: Indirect uncontrolled command line (#8)
+- SEMVER instead ot TYPE
+- Bump version to v0.0.21-chathy
+- add code ql action (#7)
+- move mcp logic out of .vscode (#6)
+- add permissions to workflows (#5)
+- Bump version to v0.0.20-chathy
+- Minor refactoring for code readability
+- Bump version to v0.0.19-chathy
+- support same directory init
+- Bump version to v0.0.18-chathy
+- support same directory init
+- Bump version to v0.0.17-chathy
+- update template logo
+- Bump version to v0.0.16-chathy
+- update template package lock
+- Bump version to v0.0.15-chathy
+- update template package lock
+- Bump version to v0.0.14-chathy
+- update template command to not conflict with chatherine command
