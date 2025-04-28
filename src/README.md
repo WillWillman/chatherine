@@ -66,6 +66,17 @@ This extension includes Model Context Protocol (MCP) integration to enable enhan
 - Integrates with the `@modelcontextprotocol/sdk` package for communication with language models
 - Enables effective testing of chat-based interactions without direct API dependencies
 
+
+## CodeQL Integration
+
+This project incorporates [GitHub's CodeQL security scanning workflow](/.github/workflows/codeql-analysis.yml) to identify and prevent potential security vulnerabilities:
+- Automatically analyzes both `JavaScript/TypeScrip`t code and GitHub `Actions` workflows
+- Runs on every push to the repository and weekly (Thursdays at 10 PM UTC)
+- Configures separate analysis paths for different language types
+- Uses 'security-and-quality' query suite for comprehensive vulnerability detection
+- Results are available in the repository's Security tab under ["Code scanning alerts"](https://github.com/WillWillman/chatherine/security/code-scanning)
+
+
 ## Usage
 
 After installing the extension, commands can be accessed through VS Code chat window via the participant registered via the root package.json
