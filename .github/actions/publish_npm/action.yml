@@ -1,26 +1,25 @@
-name: 'Publish to NPM'
-description: 'Publishes a package to npm registry'
+name: Publish to NPM
+description: Publishes a package to npm registry
 inputs:
   WORKING_DIRECTORY:
-    description: 'The WORKING_DIRECTORY to run publish from'
+    description: The WORKING_DIRECTORY to run publish from
     required: true
-    default: 'chathy'
+    default: chathy
   NPM_TOKEN:
-    description: 'NPM token for authentication'
+    description: NPM token for authentication
     required: true
   APPEND_TAG:
-    description: 'Tag to append to the version (such as "latest", "next", "pre-release")'
+    description: Tag to append to the version (such as latest, next, pre-release)
     required: true
-    default: 'pre-release'
+    default: pre-release
   ACCESS:
-    description: 'Access level for the package (public or default or private)'
+    description: Access level for the package (public or default or private)
     required: true
-    default: 'public'
+    default: public
 
 runs:
-  using: 'composite'
+  using: composite
   steps:
-
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
@@ -30,4 +29,8 @@ runs:
     - name: Publish ${{ inputs.WORKING_DIRECTORY }} to npm
       shell: bash
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
-      run: npm publish --tag ${{ env.APPEND_TAG }} --access=${{ env.ACCESS }}
+      env:
+        npm_config_tag: ${{ inputs.APPEND_TAG }}
+        npm_config_access: ${{ inputs.ACCESS }}
+        NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
+      run: npm publish
