@@ -47,13 +47,13 @@ runs:
     - name: Bump Version ${{ env.SEMVER }}
       shell: bash
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
-      run: npm version env.SEMVER --no-git-tag-version
+      run: npm version $SEMVER --no-git-tag-version
 
     - name: Create Git Tag For Version
       shell: bash
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
       run: |
-        SUBTAG="${env.WORKING_DIRECTORY:-extension}"
+        SUBTAG="${WORKING_DIRECTORY:-extension}"
         VERSION="$(npm pkg get version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -1)"
         TAG="v${VERSION}-${SUBTAG}"
         LAST_TAG="$(git tag --list "*-${SUBTAG}" --sort=-creatordate | head -n1)"
@@ -69,10 +69,10 @@ runs:
         DATE=$(date +%Y-%m-%d)
 
         if [ -z "$LAST_TAG" ]; then
-          COMMITS="$(git log --pretty=format:'- %s' --no-merges -- $env.WORKING_DIRECTORY)"
+          COMMITS="$(git log --pretty=format:'- %s' --no-merges -- $WORKING_DIRECTORY)"
           COMMITS="${COMMITS:-First release}"
         else
-          COMMITS="$(git log "${LAST_TAG}..HEAD" --pretty=format:'- %s' --no-merges -- $env.WORKING_DIRECTORY)"
+          COMMITS="$(git log "${LAST_TAG}..HEAD" --pretty=format:'- %s' --no-merges -- $WORKING_DIRECTORY)"
           COMMITS="${COMMITS:-No new commits since ${LAST_TAG}}"
         fi
 
