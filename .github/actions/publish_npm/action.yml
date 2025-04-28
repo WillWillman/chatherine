@@ -35,24 +35,28 @@ runs:
         NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
       run: npm publish
 
+    - name: Set Package Name
+      id: set_package_name
+      shell: bash
+      working-directory: ${{ inputs.WORKING_DIRECTORY }}
+      run: echo "PACKAGE_NAME=$(node -e "console.log(require('./package.json').name)")" >> $GITHUB_ENV
+
     - name: Remove pre-release tag
-      if: ${{ inputs.APPEND_TAG != 'latest' && inputs.APPEND_TAG != 'next' }}
+      if: ${{ inputs.APPEND_TAG == 'latest' || inputs.APPEND_TAG == 'next' }}
       continue-on-error: true
       shell: bash
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
       env:
         NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
-        PACKAGE_NAME: $(node -e "console.log(require('./package.json').name)")
       run: |
         npm dist-tag rm $PACKAGE_NAME pre-release
 
     - name: Remove next tag
-      if: ${{ inputs.APPEND_TAG != 'latest' }}
+      if: ${{ inputs.APPEND_TAG == 'latest' }}
       continue-on-error: true
       shell: bash
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
       env:
         NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
-        PACKAGE_NAME: $(node -e "console.log(require('./package.json').name)")
       run: |
         npm dist-tag rm $PACKAGE_NAME next
