@@ -146,3 +146,8 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 - add code ql action (#7)
 - move mcp logic out of .vscode (#6)
 - add permissions to workflows (#5)
+
+## [v0.0.22-chathy] - 2025-04-28
+
+### Changed
+- Potential fix for code scanning alert no. 11: Indirect uncontrolled command line (#8)
