@@ -17,19 +17,43 @@ runs:
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-    - name: Bump version
+    - name: Set SEMVER Patch
+      shell: bash
+      if: ${{ inputs.SEMVER == 'patch' }}
+      run: echo "SEMVER=patch" >> $GITHUB_ENV
+
+    - name: Set SEMVER Minor
+      shell: bash
+      if: ${{ inputs.SEMVER == 'minor' }}
+      run: echo "SEMVER=minor" >> $GITHUB_ENV
+
+    - name: Set SEMVER Major
+      shell: bash
+      if: ${{ inputs.SEMVER == 'major' }}
+      run: echo "SEMVER=major" >> $GITHUB_ENV
+
+    - name: Check SEMVER
+      shell: bash
+      if: ${{ env.SEMVER == '' }}
+      run: |
+        echo "Invalid SEMVER inputs.SEMVER Must be one of: patch, minor, major."
+        exit 1
+
+    - name: Set WORKING_DIRECTORY
+      shell: bash
+      if: ${{ inputs.WORKING_DIRECTORY == 'chathy' }}
+      run: echo "WORKING_DIRECTORY=chathy" >> $GITHUB_ENV
+
+    - name: Bump Version ${{ env.SEMVER }}
       shell: bash
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
-      run: |
-        npm version ${{ inputs.SEMVER }} --no-git-tag-version
+      run: npm version env.SEMVER --no-git-tag-version
 
     - name: Create Git Tag For Version
       shell: bash
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
-      env:
-        INPUT_WORKING_DIRECTORY: ${{ inputs.WORKING_DIRECTORY }}
       run: |
-        SUBTAG="${INPUT_WORKING_DIRECTORY:-extension}"
+        SUBTAG="${env.WORKING_DIRECTORY:-extension}"
         VERSION="$(npm pkg get version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -1)"
         TAG="v${VERSION}-${SUBTAG}"
         LAST_TAG="$(git tag --list "*-${SUBTAG}" --sort=-creatordate | head -n1)"
@@ -45,10 +69,10 @@ runs:
         DATE=$(date +%Y-%m-%d)
 
         if [ -z "$LAST_TAG" ]; then
-          COMMITS="$(git log --pretty=format:'- %s' --no-merges -- $INPUT_WORKING_DIRECTORY)"
+          COMMITS="$(git log --pretty=format:'- %s' --no-merges -- $env.WORKING_DIRECTORY)"
           COMMITS="${COMMITS:-First release}"
         else
-          COMMITS="$(git log "${LAST_TAG}..HEAD" --pretty=format:'- %s' --no-merges -- $INPUT_WORKING_DIRECTORY)"
+          COMMITS="$(git log "${LAST_TAG}..HEAD" --pretty=format:'- %s' --no-merges -- $env.WORKING_DIRECTORY)"
           COMMITS="${COMMITS:-No new commits since ${LAST_TAG}}"
         fi
 

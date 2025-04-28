@@ -1,10 +1,6 @@
 name: 'Publish Extension To Marketplace'
 description: 'Publishes a extension to Marketplace'
 inputs:
-  PUBLISH_COMMAND:
-    description: 'Command to publish the extension'
-    required: false
-    default: 'npm run publish:extension'
   VSCE_PAT:
     description: 'Azure PAT token for authentication'
     required: true
@@ -14,7 +10,7 @@ runs:
   steps:
     - name: Publish Extension To Marketplace
       shell: bash
-      run: ${{ inputs.PUBLISH_COMMAND }}
       env:
         NODE_ENV: production
         VSCE_PAT: ${{ inputs.VSCE_PAT }}
+      run: npm run publish:extension
