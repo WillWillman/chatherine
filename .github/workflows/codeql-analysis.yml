@@ -3,6 +3,7 @@ permissions:
   security-events: write
   packages: read
 on:
+  workflow_dispatch:
   push:
   schedule:
     - cron: '00 22 * * 4' # 10pm UTC === 2pm PST/3pm PDT === 5pm ET/6pm EDT
