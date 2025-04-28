@@ -34,3 +34,25 @@ runs:
         npm_config_access: ${{ inputs.ACCESS }}
         NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
       run: npm publish
+
+    - name: Remove pre-release tag
+      if: ${{ inputs.APPEND_TAG != 'latest' && inputs.APPEND_TAG != 'next' }}
+      continue-on-error: true
+      shell: bash
+      working-directory: ${{ inputs.WORKING_DIRECTORY }}
+      env:
+        NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
+      run: |
+        PACKAGE_NAME=$(npm pkg get name | grep -o '[^"]\+' | head -1)
+        npm dist-tag rm $PACKAGE_NAME pre-release
+
+    - name: Remove next tag
+      if: ${{ inputs.APPEND_TAG != 'latest' }}
+      continue-on-error: true
+      shell: bash
+      working-directory: ${{ inputs.WORKING_DIRECTORY }}
+      env:
+        NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
+      run: |
+        PACKAGE_NAME=$(npm pkg get name | grep -o '[^"]\+' | head -1)
+        npm dist-tag rm $PACKAGE_NAME next
