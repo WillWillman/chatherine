@@ -214,3 +214,8 @@ No new commits since v0.0.26-chathy
 - update template package lock
 - Bump version to v0.0.14-chathy
 - update template command to not conflict with chatherine command
+
+## [v0.0.16-extension] - 2025-04-28
+
+### Changed
+- Refactor vscode:prepublish script to unify development and production commands
