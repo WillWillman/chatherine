@@ -151,3 +151,8 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 
 ### Changed
 - Potential fix for code scanning alert no. 11: Indirect uncontrolled command line (#8)
+
+## [v0.0.23-chathy] - 2025-04-28
+
+### Changed
+No new commits since v0.0.22-chathy
