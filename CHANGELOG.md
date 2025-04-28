@@ -166,3 +166,8 @@ No new commits since v0.0.23-chathy
 
 ### Changed
 No new commits since v0.0.24-chathy
+
+## [v0.0.26-chathy] - 2025-04-28
+
+### Changed
+No new commits since v0.0.25-chathy
