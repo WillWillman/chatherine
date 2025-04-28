@@ -42,8 +42,8 @@ runs:
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
       env:
         NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
+        PACKAGE_NAME: $(node -e "console.log(require('./package.json').name)")
       run: |
-        PACKAGE_NAME=$(npm pkg get name | grep -o '[^"]\+' | head -1)
         npm dist-tag rm $PACKAGE_NAME pre-release
 
     - name: Remove next tag
@@ -53,6 +53,6 @@ runs:
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
       env:
         NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
+        PACKAGE_NAME: $(node -e "console.log(require('./package.json').name)")
       run: |
-        PACKAGE_NAME=$(npm pkg get name | grep -o '[^"]\+' | head -1)
         npm dist-tag rm $PACKAGE_NAME next
