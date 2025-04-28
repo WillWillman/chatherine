@@ -156,3 +156,8 @@ All notable changes to the "Chatherine: Your Copilot Flight Attendant" extension
 
 ### Changed
 No new commits since v0.0.22-chathy
+
+## [v0.0.24-chathy] - 2025-04-28
+
+### Changed
+No new commits since v0.0.23-chathy
