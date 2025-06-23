@@ -16,33 +16,8 @@ The extension is activated through the `activate` function in this file, which:
 - **No History**: Processes user requests without preserving chat history.
 - **Refine Prompt**: Helps improve prompts using the 4S principle.
 - **Refine Prompt No History**: Refines prompts without conversation history.
+- **Ask Registered Model**: Sent prompt with history and context to a third party model.
 - **Documentation**: Assists in searching and analyzing documentation within a workspace.
-      ```json
-      "chatherine.documentation.exclude": [
-          "**/node_modules/**",
-          "**/dist/**",
-          "**/build/**",
-          "**/out/**",
-          "**/coverage/**",
-          "**/lib/**",
-          "**/bin/**",
-          "**/.vscode-test/**",
-          "**/init/**"
-      ],
-      "chatherine.documentation.include": [
-          "**/package.json",
-          "**/*.md"
-      ]
-      ```
-Will merge down in this order (if defined):
-- defaultValues (above set in package.json AND .vscode/settings.json for reference purposes)
-- globalValue
-- workspaceValue
-- workspaceFolderValue
-- defaultLanguageValue
-- globalLanguageValue
-- workspaceLanguageValue
-- workspaceFolderLanguageValue
 
 ## Implementation Details
 

@@ -46,7 +46,8 @@ For more details on each command, see [Commands README](src/commands/README.md).
   Refine your prompt without any chat history for unbiased suggestions.
 - `/documentation`
   Search and summarize documentation (markdown and package.json files) in your workspace.
-
+- `/askRegisteredModel`
+  Interact with a registered model by sending requests and receiving responses. Useful for querying models outside of Copilot.
 
 ### Example Usage
 ```
@@ -54,6 +55,7 @@ For more details on each command, see [Commands README](src/commands/README.md).
 @chatherine /refinePrompt How do I write a function to merge two arrays?
 @chatherine /refinePromptNoHistory How do I write a function to merge two arrays?
 @chatherine /documentation How do I implement a new command?
+@chatherine /askRegisteredModel Help me with this problem
 ```
 
 ### Documentation Command Includes/Excludes

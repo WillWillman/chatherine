@@ -1,0 +1,1 @@
+export { askRegisteredModel } from './askRegisteredModel';

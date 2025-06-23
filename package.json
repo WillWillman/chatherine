@@ -139,6 +139,10 @@
 					{
 						"name": "documentation",
 						"description": "Dive into the chatherine and chathy documentation"
+					},
+					{
+						"name": "askRegisteredModel",
+						"description": "Ask a registered model for help"
 					}
 				]
 			}
