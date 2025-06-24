@@ -219,3 +219,8 @@ No new commits since v0.0.26-chathy
 
 ### Changed
 - Refactor vscode:prepublish script to unify development and production commands
+
+## [v0.1.0-extension] - 2025-06-24
+
+### Changed
+- Adding byoAI functionality (#11)
