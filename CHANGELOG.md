@@ -229,3 +229,8 @@ No new commits since v0.0.26-chathy
 
 ### Changed
 - Reset byo AI secrets
+
+## [v0.1.2-extension] - 2025-06-24
+
+### Changed
+- Enable Configured Models
