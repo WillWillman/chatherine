@@ -59,6 +59,12 @@
 		"typescript-eslint": "^8.26.0"
 	},
 	"contributes": {
+  "commands": [
+			{
+				"command": "byoAIReset",
+				"title": "Chatherine: Reset BYO AI Secrets"
+			}
+		],
 		"configuration": {
 			"title": "Chatherine",
 			"properties": {

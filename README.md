@@ -8,6 +8,7 @@ Chatherine is a chat assistant for Visual Studio Code that helps you get more ou
 - ✨ Refine your prompts for Copilot using best practices
 - 📝 Search and summarize your project documentation
 - 🧹 Run stateless (no history) Copilot requests
+- 🧠 <span style="color:red"><strong>NEW!</strong></span> Bring Your Own AI: Interact with your own registered AI models via HTTP
 
 ## Requirements
 
