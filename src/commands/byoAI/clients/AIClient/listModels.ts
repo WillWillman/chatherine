@@ -1,6 +1,6 @@
 import { httpClient } from './utils/httpClient';
 
-export const listModels = async (config) =>
+export const listModels = (config) => () =>
   httpClient
     .get(config.endpoint + '/models', {
       headers: {

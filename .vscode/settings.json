@@ -26,4 +26,5 @@
         "**/package.json",
         "**/*.md"
     ],
+    "chatherine.byoAI.model": "gpt-4o",
 }

@@ -1,6 +1,6 @@
 import chathy from '@chatherine/chathy';
-import { httpClient } from './utils/httpClient';
-import { asyncIterator } from './utils/asyncIterator';
+import { httpClient } from './httpClient';
+import { asyncIterator } from './asyncIterator';
 
 export interface ApiConfig {
   endpoint: string;
@@ -30,6 +30,7 @@ export const sendRequest = (apiConfig) => async (messages): Promise<chathy.Langu
     })
     .then(({ choices }) => choices)
     .then(([choice]) => choice.message.content)
+    // Convert the response text into an async iterator to match vscode's LanguageModelChatResponse structure
     .then(text => ({
       stream: asyncIterator(text),
       text: asyncIterator(text),

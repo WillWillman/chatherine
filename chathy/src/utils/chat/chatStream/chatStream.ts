@@ -9,6 +9,15 @@ export const chatStream: ChatStream = (instructions = []) => async (request, con
 
   const references = await Promise.all(request.references.map(withFileContent(stream)));
 
+  console.log('Chat stream request:', {
+    model: request.model.id,
+    instructions,
+    userPrompt: request.prompt,
+    tools: request.toolReferences,
+    references,
+    context,
+  });
+
   const messages = [
     ...instructions,
     'User prompt:',

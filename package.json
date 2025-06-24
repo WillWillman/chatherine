@@ -68,6 +68,10 @@
 		"configuration": {
 			"title": "Chatherine",
 			"properties": {
+				"chatherine.byoAI.model": {
+					"type": "string",
+					"description": "Optional specify a model. If not specified a user input will be requested each prompt."
+				},
 				"chatherine.documentation.exclude": {
 					"type": "array",
 					"items": {
