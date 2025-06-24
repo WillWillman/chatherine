@@ -15,28 +15,10 @@ Provides the same prompt refinement capabilities as the standard `refinePrompt` 
 
 ### [Documentation](/src/commands/documentation/README.md)
 Assists users in searching through documentation within a workspace. It searches markdown and `package.json` files, answers user questions, summarizes relevant documentation, and identifies outdated or conflicting documentation if applicable.
+(see documentation for customizations)
 
-#### Configure Documentation Structure
-In [workspace settings](/.vscode/settings.json)
-
-Defaults:
-```json
-"chatherine.documentation.exclude": [
-    "**/node_modules/**",
-    "**/dist/**",
-    "**/build/**",
-    "**/out/**",
-    "**/coverage/**",
-    "**/lib/**",
-    "**/bin/**",
-    "**/.vscode-test/**",
-    "**/init/**"
-],
-"chatherine.documentation.include": [
-    "**/package.json",
-    "**/*.md"
-]
-```
+### [Bring Your Own AI](/src/commands/byoAI/README.md)
+Interact with a registered AI API by sending requests and receiving responses. Useful for querying models outside of Copilot.
 
 ## Common Features
 

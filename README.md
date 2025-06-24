@@ -46,7 +46,8 @@ For more details on each command, see [Commands README](src/commands/README.md).
   Refine your prompt without any chat history for unbiased suggestions.
 - `/documentation`
   Search and summarize documentation (markdown and package.json files) in your workspace.
-
+- `/byoAI`
+  Interact with a registered model and send all context and session history. Useful for querying models outside of Copilot.
 
 ### Example Usage
 ```
@@ -54,35 +55,8 @@ For more details on each command, see [Commands README](src/commands/README.md).
 @chatherine /refinePrompt How do I write a function to merge two arrays?
 @chatherine /refinePromptNoHistory How do I write a function to merge two arrays?
 @chatherine /documentation How do I implement a new command?
+@chatherine /byoAI Help me with this problem.
 ```
-
-### Documentation Command Includes/Excludes
-```json
-"chatherine.documentation.exclude": [
-    "**/node_modules/**",
-    "**/dist/**",
-    "**/build/**",
-    "**/out/**",
-    "**/coverage/**",
-    "**/lib/**",
-    "**/bin/**",
-    "**/.vscode-test/**",
-    "**/init/**"
-],
-"chatherine.documentation.include": [
-    "**/package.json",
-    "**/*.md"
-]
-```
-#### Will merge down in this order (if defined):
-- defaultValues (above)
-- globalValue
-- workspaceValue
-- workspaceFolderValue
-- defaultLanguageValue
-- globalLanguageValue
-- workspaceLanguageValue
-- workspaceFolderLanguageValue
 
 ## Support
 

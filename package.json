@@ -102,20 +102,12 @@
 				"isSticky": true,
 				"commands": [
 					{
-						"name": "refinePrompt",
-						"description": "Refine the given prompt",
-						"disambiguation": [
-							{
-								"category": "helper",
-								"description": "Refine the given prompt",
-								"examples": [
-									"How can I improve this prompt?",
-									"How can I make this prompt better?",
-									"Refine this prompt",
-									"Whats wrong with this prompt?"
-								]
-							}
-						]
+						"name": "byoAI",
+						"description": "Ask a registered model for help"
+					},
+					{
+						"name": "documentation",
+						"description": "Dive into the chatherine and chathy documentation"
 					},
 					{
 						"name": "noHistory",
@@ -133,12 +125,24 @@
 						]
 					},
 					{
-						"name": "refinePromptNoHistory",
-						"description": "Refine the given prompt without chat history"
+						"name": "refinePrompt",
+						"description": "Refine the given prompt",
+						"disambiguation": [
+							{
+								"category": "helper",
+								"description": "Refine the given prompt",
+								"examples": [
+									"How can I improve this prompt?",
+									"How can I make this prompt better?",
+									"Refine this prompt",
+									"Whats wrong with this prompt?"
+								]
+							}
+						]
 					},
 					{
-						"name": "documentation",
-						"description": "Dive into the chatherine and chathy documentation"
+						"name": "refinePromptNoHistory",
+						"description": "Refine the given prompt without chat history"
 					}
 				]
 			}

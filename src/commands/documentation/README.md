@@ -48,3 +48,24 @@ export const documentation: chathy.Command = (commandContext) => async (request,
   return chathy.utils.chat.chatStream(instructions)({ ...request, references }, context, stream, token);
 };
 ```
+
+## Configuration
+
+To customize the `documentation` command, add the following configuration to your workspace settings and modify as needed:
+
+```json
+"chatherine.documentation.exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/out/**",
+    "**/coverage/**",
+    "**/lib/**",
+    "**/bin/**",
+    "**/.vscode-test/**",
+    "**/init/**"
+],
+"chatherine.documentation.include": [
+    "**/package.json",
+    "**/*.md"
+]
