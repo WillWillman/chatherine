@@ -224,3 +224,8 @@ No new commits since v0.0.26-chathy
 
 ### Changed
 - Adding byoAI functionality (#11)
+
+## [v0.1.1-extension] - 2025-06-24
+
+### Changed
+- Reset byo AI secrets
