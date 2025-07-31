@@ -21,6 +21,7 @@ export const getModel = async (commandContext) => {
 
   return aiClient
     .listModels()
+    .then(models => models.sort((a, b) => a.name.localeCompare(b.name)))
     .then(models => UserPromptClient.showQuickPick('Select a model', models))
     .then(aiClient.getModel);
 };
