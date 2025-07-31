@@ -242,3 +242,8 @@ No new commits since v0.0.26-chathy
 - Update README.md
 - Update README.md
 - Update README.md
+
+## [v0.1.4-extension] - 2025-07-31
+
+### Changed
+- Sort Model List for byoai
