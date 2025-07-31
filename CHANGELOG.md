@@ -234,3 +234,11 @@ No new commits since v0.0.26-chathy
 
 ### Changed
 - Enable Configured Models
+
+## [v0.1.3-extension] - 2025-07-31
+
+### Changed
+- Sort Model List for byoai
+- Update README.md
+- Update README.md
+- Update README.md
