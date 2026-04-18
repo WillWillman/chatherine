@@ -14,12 +14,12 @@ export const documentation: chathy.Command = (commandContext) => async (request,
 
   const extensionReferences = await chathy.utils.chat.getFileReferences({
     base: commandContext.workspaceRoot,
-    include: `{${commandContext.workspaceConfiguration.get<string[]>('documentation.include').join(',')}}`,
-    exclude: `{${commandContext.workspaceConfiguration.get<string[]>('documentation.exclude').join(',')}}`,
+    include: `{${commandContext.workspaceConfiguration.get<string[]>('documentation.include', []).join(',')}}`,
+    exclude: `{${commandContext.workspaceConfiguration.get<string[]>('documentation.exclude', []).join(',')}}`,
     token,
   });
 
   const references = [...request.references, ...extensionReferences];
 
-  return chathy.utils.chat.chatStream(instructions)({ ...request, references }, null, stream, token);
+  return chathy.utils.chat.chatStream(instructions)({ ...request, references }, { history: [] }, stream, token);
 };

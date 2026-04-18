@@ -72,6 +72,23 @@
 					"type": "string",
 					"description": "Optional specify a model. If not specified a user input will be requested each prompt."
 				},
+				"chatherine.maxHistoryTurns": {
+					"type": "number",
+					"default": 5,
+					"description": "Maximum number of history turns to include in the context (default: 5, set to 0 to disable history)"
+				},
+				"chatherine.maxReferencesCount": {
+					"type": "number",
+					"default": 10,
+					"description": "Maximum number of file references to include in the context (default: 10)"
+				},
+				"chatherine.tokenBudgetPercentage": {
+					"type": "number",
+					"default": 85,
+					"minimum": 50,
+					"maximum": 95,
+					"description": "Percentage of model's maxInputTokens to use for context (default: 85%, leaving room for response)"
+				},
 				"chatherine.documentation.exclude": {
 					"type": "array",
 					"items": {
@@ -118,6 +135,14 @@
 					{
 						"name": "documentation",
 						"description": "Dive into the chatherine and chathy documentation"
+					},
+					{
+						"name": "planMode",
+						"description": "Plan mode: Research and analyze with more context"
+					},
+					{
+						"name": "agentMode",
+						"description": "Agent mode: Execute tasks efficiently with tools"
 					},
 					{
 						"name": "noHistory",

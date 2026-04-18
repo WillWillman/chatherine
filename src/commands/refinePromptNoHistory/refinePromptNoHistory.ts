@@ -1,7 +1,6 @@
 import * as chathy from '@chatherine/chathy';
-import { refinePrompt } from '../refinePrompt';
+import { instructions } from '../refinePrompt';
 
-export const refinePromptNoHistory: chathy.Command = (commandContext) => async (request, _context, stream, token) => {
-  const history = [];
-  await refinePrompt(commandContext)(request, { history }, stream, token);
+export const refinePromptNoHistory: chathy.Command = (_commandContext) => async (request, context, stream, token) => {
+  await chathy.utils.chat.chatStream(instructions, { maxHistoryTurns: 0 })(request, context, stream, token);
 };

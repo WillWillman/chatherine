@@ -12,6 +12,5 @@ export const instructions = [
 ];
 
 export const refinePrompt: chathy.Command = (_commandContext) => async (request, context, stream, token) => {
-  const history = context.history.slice(-2);
-  await chathy.utils.chat.chatStream(instructions)(request, { history }, stream, token);
+  await chathy.utils.chat.chatStream(instructions, { maxHistoryTurns: 2 })(request, context, stream, token);
 };

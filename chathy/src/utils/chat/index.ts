@@ -1,5 +1,9 @@
 export { chatStream } from './chatStream';
+export { extractTextContent } from './extractTextContent';
+export { formatHistory } from './formatHistory';
 export { getFileReferences } from './getFileReferences';
+export { getTools } from './getTools';
+export { manageBudget } from './manageBudget';
 export { sendRequest } from './sendRequest';
 export { streamResponse } from './streamResponse';
 export { withFileContent } from './withFileContent';

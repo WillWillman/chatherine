@@ -16,17 +16,43 @@ const formatMessages = (messages) =>
       content: content?.value,
     }));
 
-export const sendRequest = (apiConfig) => async (messages): Promise<chathy.LanguageModelChatResponse> =>
-  httpClient
+const formatTools = (tools) => {
+  if (!tools || tools.length === 0) {
+    return undefined;
+  }
+
+  return tools.map(tool => ({
+    type: 'function',
+    function: {
+      name: tool.name,
+      description: tool.description,
+      parameters: tool.inputSchema || {},
+    },
+  }));
+};
+
+export const sendRequest = (apiConfig) => async (messages, options?, token?): Promise<chathy.LanguageModelChatResponse> => {
+  const requestBody: any = {
+    model: apiConfig.model,
+    messages: formatMessages(messages),
+  };
+
+  // Add tools if provided
+  if (options?.tools) {
+    const formattedTools = formatTools(options.tools);
+    if (formattedTools) {
+      requestBody.tools = formattedTools;
+      requestBody.tool_choice = 'auto';
+    }
+  }
+
+  return httpClient
     .post(apiConfig.endpoint + '/chat/completions', {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiConfig.apiKey}`,
       },
-      body: {
-        model: apiConfig.model,
-        messages: formatMessages(messages),
-      },
+      body: requestBody,
     })
     .then(({ choices }) => choices)
     .then(([choice]) => choice.message.content)
@@ -35,3 +61,4 @@ export const sendRequest = (apiConfig) => async (messages): Promise<chathy.Langu
       stream: asyncIterator(text),
       text: asyncIterator(text),
     }));
+};

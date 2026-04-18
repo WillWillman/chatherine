@@ -1,1 +1,1 @@
-export { refinePrompt } from './refinePrompt';
+export { refinePrompt, instructions } from './refinePrompt';
