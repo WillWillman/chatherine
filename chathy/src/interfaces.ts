@@ -21,6 +21,6 @@ export type CommandContext = {
 
 export type Command = (commandContext: CommandContext) => ChatRequestHandler;
 
-export type Activate = (commands: Record<string, Command>, defaultCommand?: string) => (extensionContext: ExtensionContext) => void;
+export type Activate = (commands: Record<string, Command>, defaultCommand: string) => (extensionContext: ExtensionContext) => void;
 export type CreateChatParticipant = (ExtensionContext: ExtensionContext, defaultCommand: string) => ChatParticipant;
 export type RegisterCommand = (commandContext: CommandContext) => (command: Command) => vscode.Disposable;

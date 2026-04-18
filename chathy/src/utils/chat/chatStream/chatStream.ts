@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { withFileContent, sendRequest, streamResponse } from '..';
 import { ChatRequestHandler } from '../../../interfaces';
 
-const exists = v => v !== undefined && v !== null && v !== '';
+const exists = (v: any) => v !== undefined && v !== null && v !== '';
 
 type ChatStream = (instructions?: (string | object | number | boolean)[]) => ChatRequestHandler;
 export const chatStream: ChatStream = (instructions = []) => async (request, context, stream, token) => {

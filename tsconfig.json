@@ -8,7 +8,8 @@
 		"outDir": "dist",
 		"esModuleInterop": true,
 		"isolatedModules": true,
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"noImplicitAny": false,
 	},
 	"include": [
 		"src/**/*",

@@ -1,4 +1,5 @@
-export { byoAI, byoAIReset } from './byoAI';
+export { byoAI } from './byoAI';
+export { byoAIReset } from './byoAI';
 export { documentation } from './documentation';
 export { noHistory } from './noHistory';
 export { refinePrompt } from './refinePrompt';

@@ -11,9 +11,12 @@ export const getModel = async (commandContext) => {
     endpoint: await secretClient.get('endpoint'),
   });
 
-  const configuredModel = commandContext
+  const configuredModelId = commandContext
     .workspaceConfiguration
     .get('byoAI.model');
+
+  const models = await aiClient.listModels();
+  const configuredModel = models.find(m => m.id === configuredModelId);
 
   if (configuredModel) {
     return aiClient.getModel(configuredModel);
@@ -21,7 +24,8 @@ export const getModel = async (commandContext) => {
 
   return aiClient
     .listModels()
-    .then(models => models.sort((a, b) => a.localeCompare(b)))
-    .then(models => UserPromptClient.showQuickPick('Select a model', models))
-    .then(aiClient.getModel);
+    .then(models => models.sort((a, b) => a.id.localeCompare(b.id)))
+    .then(models => UserPromptClient.showQuickPick('Select a model', models.map(({ id }) => id)))
+    .then(selectedId => models.find(m => m.id === selectedId))
+    .then(model => aiClient.getModel(model));
 };

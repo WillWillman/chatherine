@@ -18,7 +18,7 @@ export const withFileContent: WithFileContent = (stream) => async (reference) =>
       fileContent,
     };
   } catch (error) {
-    stream.progress('Chatherine: Error getting file content: ' + error.message);
+    stream.progress('Chatherine: Error getting file content: ' + String(error));
     return reference;
   }
 };
@@ -29,7 +29,7 @@ const getRange = (reference: vscode.ChatPromptReference, document: vscode.TextDo
     return asLocation.range;
 
   const [start, end] = reference.range || [];
-  if (!end) return new vscode.Range(
+  if (!end || !start) return new vscode.Range(
     new vscode.Position(0, 0),
     new vscode.Position(document.lineCount, 0),
   );
@@ -52,5 +52,5 @@ const getUri = (reference: vscode.ChatPromptReference): vscode.Uri => {
   if (asUri.scheme)
     return asUri;
 
-  return;
+  return vscode.Uri.file('');
 };

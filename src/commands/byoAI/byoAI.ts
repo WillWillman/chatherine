@@ -8,8 +8,13 @@ const instructions = [
 ];
 
 
-export const byoAI: chathy.Command = (commandContext) => async (request, context, stream, token) =>
-  chathy.utils.chat.chatStream(instructions)({
+export const byoAI: chathy.Command = (commandContext) => async (request, context, stream, token) => {
+  const model = await getModel(commandContext);
+  if (!model) {
+    throw new Error('No model selected');
+  }
+  return chathy.utils.chat.chatStream(instructions)({
     ...request,
-    model: await getModel(commandContext),
+    model: model,
   }, context, stream, token);
+}

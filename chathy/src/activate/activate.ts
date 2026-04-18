@@ -3,7 +3,7 @@ import * as participant from '..';
 import { Activate } from '../interfaces';
 
 export const activate: Activate = (commands, defaultCommand) => (extensionContext) => {
-  const workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
+  const workspaceRoot = vscode.workspace.workspaceFolders![0].uri.fsPath;
   const workspaceConfiguration = vscode.workspace.getConfiguration(extensionContext.extension.packageJSON.name);
 
   Object
@@ -16,6 +16,6 @@ export const activate: Activate = (commands, defaultCommand) => (extensionContex
 
   participant.createChatParticipant(
     extensionContext,
-    commands[defaultCommand].name,
+    defaultCommand,
   );
 };
