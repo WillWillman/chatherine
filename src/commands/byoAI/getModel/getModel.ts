@@ -16,7 +16,7 @@ export const getModel = async (commandContext) => {
     .get('byoAI.model');
 
   const models = await aiClient.listModels();
-  const configuredModel = models.find(m => m.id === configuredModelId);
+  const configuredModel = models.find(m => m.id === configuredModelId) ?? (configuredModelId ? { id: configuredModelId } : undefined);
 
   if (configuredModel) {
     return aiClient.getModel(configuredModel);

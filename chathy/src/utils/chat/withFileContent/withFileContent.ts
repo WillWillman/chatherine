@@ -6,6 +6,7 @@ type WithFileContent = (stream: vscode.ChatResponseStream) => (reference: vscode
 export const withFileContent: WithFileContent = (stream) => async (reference) => {
   try {
     const uri = getUri(reference);
+    if (!uri) return reference;
     const document = await vscode.workspace.openTextDocument(uri);
     const range = getRange(reference, document);
 
@@ -40,13 +41,16 @@ const getRange = (reference: vscode.ChatPromptReference, document: vscode.TextDo
   );
 };
 
-const getUri = (reference: vscode.ChatPromptReference): vscode.Uri => {
+const getUri = (reference: vscode.ChatPromptReference): vscode.Uri | null => {
   const asLocation = reference.value as vscode.Location;
   if (asLocation.uri)
     return asLocation.uri;
 
-  if (typeof reference.value === 'string')
-    return vscode.Uri.parse(reference.value);
+  if (typeof reference.value === 'string') {
+    if (/^[a-zA-Z][a-zA-Z0-9+\-.]*:/.test(reference.value))
+      return vscode.Uri.parse(reference.value);
+    return null;
+  }
 
   const asUri = reference.value as vscode.Uri;
   if (asUri.scheme)

@@ -25,6 +25,5 @@
     "chatherine.documentation.include": [
         "**/package.json",
         "**/*.md"
-    ],
-    "chatherine.byoAI.model": "gpt-4o",
+    ]
 }

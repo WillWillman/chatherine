@@ -9,12 +9,10 @@ export interface ApiConfig {
 };
 
 const formatMessages = (messages) =>
-  messages
-    ?.flatMap(message => message?.c)
-    ?.map(content => ({
-      role: 'user',
-      content: content?.value,
-    }));
+  messages?.map(message => ({
+    role: message.role === 2 ? 'assistant' : 'user',
+    content: message?.content?.map(part => part.value).join('') || '',
+  }));
 
 const formatTools = (tools) => {
   if (!tools || tools.length === 0) {
@@ -54,8 +52,15 @@ export const sendRequest = (apiConfig) => async (messages, options?, token?): Pr
       },
       body: requestBody,
     })
-    .then(({ choices }) => choices)
-    .then(([choice]) => choice.message.content)
+    .then(({ choices, error }) => {
+      if (error) {
+        throw new Error(typeof error === 'string' ? error : error.message || JSON.stringify(error));
+      }
+      if (!choices?.length) {
+        throw new Error('No choices returned from API');
+      }
+      return choices[0].message.content;
+    })
     // Convert the response text into an async iterator to match vscode's LanguageModelChatResponse structure
     .then(text => ({
       stream: asyncIterator(text),

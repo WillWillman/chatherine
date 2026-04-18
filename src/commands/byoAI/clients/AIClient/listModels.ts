@@ -22,4 +22,10 @@ export const listModels = (config) => (): Promise<ModelInfo[]> =>
         'Authorization': `Bearer ${config.apiKey}`,
       },
     })
-    .then(({ data }) => data);
+    .then(response => {
+      const data = Array.isArray(response) ? response : response?.data;
+      if (!Array.isArray(data)) {
+        return [] as ModelInfo[];
+      }
+      return data as ModelInfo[];
+    });

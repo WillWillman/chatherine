@@ -1,6 +1,6 @@
 export const httpClient = ({
   post: (endpoint, options) =>
-    fetch(endpoint.replace('//', '/'), {
+    fetch(endpoint, {
       ...options,
       method: 'POST',
       body: JSON.stringify(options.body),

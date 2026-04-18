@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { renderPrompt, UserMessage, AssistantMessage, TextChunk, PromptElement, BasePromptElementProps, PromptSizing } from '@vscode/prompt-tsx';
+import { renderPrompt, UserMessage, AssistantMessage, PromptElement, BasePromptElementProps, PromptSizing } from '@vscode/prompt-tsx';
 import { withFileContent, sendRequest, streamResponse } from '..';
 import { extractTextContent } from '../extractTextContent';
 import { ChatRequestHandler } from '../../../interfaces';
@@ -21,28 +21,28 @@ interface ChatPromptProps extends BasePromptElementProps {
 
 class ChatPrompt extends PromptElement<ChatPromptProps> {
   render(_state: void, _sizing: PromptSizing) {
+    const referencesText = this.props.references
+      .map(ref => `\n\nFile: ${ref.value?.path || ref.value?.uri?.path || 'unknown'}\n\n${ref.fileContent || ''}`)
+      .join('\n');
+
+    const contextMessage = this.props.instructionText + (referencesText ? '\n' + referencesText : '');
+
     return (
       <>
-        <TextChunk priority={100}>
-          {[this.props.instructionText]}
-        </TextChunk>
-
-        {this.props.references.map((ref: any, idx: number) => (
-          <TextChunk priority={50 - idx}>
-            {[`\n\nFile: ${ref.value?.path || ref.value?.uri?.path || 'unknown'}\n\n${ref.fileContent || ''}`]}
-          </TextChunk>
-        ))}
+        <UserMessage priority={100}>
+          {contextMessage}
+        </UserMessage>
 
         {this.props.history.map((turn, idx) => {
           if (turn instanceof vscode.ChatRequestTurn) {
             return (
-              <UserMessage priority={10 - idx}>
+              <UserMessage priority={50 - idx}>
                 {turn.prompt}
               </UserMessage>
             );
           } else if (turn instanceof vscode.ChatResponseTurn) {
             return (
-              <AssistantMessage priority={10 - idx}>
+              <AssistantMessage priority={50 - idx}>
                 {extractTextContent(turn)}
               </AssistantMessage>
             );
